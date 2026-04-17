@@ -4,1447 +4,1914 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lumina — Beauty & Care</title>
-
-<!-- Fonte Google: Poppins + Playfair Display -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --rose:#C2185B;--rose-d:#7B1F3F;
-  --pink:#F06292;
-  --bg:#F7F4F2;
-  --card-bg:#FFFFFF;
-  --border:#E3D8D3;
-  --border-soft:#F0E4DF;
-  --text:#2F2320;
-  --muted:#757575;
-  --accent:#AB47BC;
-}
-body{
-  font-family:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  background:var(--bg);color:var(--text);min-height:100vh;
-}
-
-/* NAVBAR */
-nav{
-  background:#fff;border-bottom:1px solid var(--border);
-  position:sticky;top:0;z-index:100;padding:0 24px;
-  backdrop-filter:blur(8px);
-}
-.nav-inner{
-  max-width:1100px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  height:64px;gap:12px;
-}
-.logo{cursor:pointer;line-height:1;flex-shrink:0}
-.logo-main{
-  font-family:'Playfair Display',serif;
-  font-size:24px;font-weight:700;letter-spacing:3px;color:var(--rose-d);
-}
-.logo-sub{
-  font-size:10px;letter-spacing:4px;color:var(--muted);
-  margin-top:3px;text-transform:uppercase;
-}
-.nav-tabs{display:flex;gap:6px;flex-wrap:wrap}
-.tab{
-  padding:7px 14px;border-radius:20px;cursor:pointer;font-size:13px;
-  color:var(--muted);transition:all .2s;border:none;background:transparent;
-  font-weight:500;white-space:nowrap;
-}
-.tab:hover{background:#F4E8EB;color:var(--rose-d)}
-.tab.active{
-  background:var(--rose-d);color:#fff;
-  font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.08);
+/* ─── RESET & VARS ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --ink:    #1a0f0a;
+  --ink2:   #3d2318;
+  --cream:  #faf7f4;
+  --warm:   #f3ede6;
+  --blush:  #e8cfc4;
+  --petal:  #d4a090;
+  --rose:   #b5604a;
+  --deep:   #7a3826;
+  --gold:   #c9a96e;
+  --gold2:  #e8d5a3;
+  --sage:   #8a9e8c;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --ease: cubic-bezier(.25,.46,.45,.94);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
 }
 
-/* PÁGINAS */
-.page{display:none;max-width:1100px;margin:0 auto;padding:32px 24px}
-.page.active{display:block}
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--petal); border-radius: 2px; }
 
-/* HERO */
-.hero{
-  border-radius:22px;padding:56px 32px;text-align:left;background:var(--card-bg);
-  border:1px solid var(--border);
-  margin-bottom:32px;position:relative;overflow:hidden;
-  box-shadow:0 18px 40px rgba(0,0,0,.03);
-  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,0.9fr);gap:32px;
-}
-.hero-blob1,.hero-blob2,.hero-blob3,.hero-blob4{display:none;}
-.hero-inner{position:relative;z-index:1}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  border-radius:999px;border:1px solid var(--border-soft);
-  padding:4px 14px;font-size:11px;color:var(--muted);
-  text-transform:uppercase;letter-spacing:2px;margin-bottom:18px;
-}
-.hero-badge span{width:6px;height:6px;border-radius:50%;background:var(--rose-d)}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:44px;font-weight:700;letter-spacing:2px;
-  color:var(--rose-d);margin-bottom:10px;
-}
-.hero-tagline{
-  font-size:16px;color:var(--rose);letter-spacing:.5px;margin-bottom:16px;
-}
-.hero p{
-  font-size:14px;color:var(--muted);max-width:460px;
-  margin:0 0 26px;line-height:1.7;
-}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn-grad{
-  background:var(--rose-d);color:#fff;border:none;
-  padding:11px 26px;border-radius:999px;font-size:14px;cursor:pointer;
-  font-weight:600;transition:all .2s;
-}
-.btn-grad:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.16)}
-.btn-soft{
-  background:#fff;color:var(--rose-d);border:1px solid var(--border);
-  padding:10px 22px;border-radius:999px;font-size:14px;cursor:pointer;
-  font-weight:500;transition:all .2s;
-}
-.btn-soft:hover{background:#F5ECE9;transform:translateY(-1px)}
-.hero-right{
-  border-left:1px solid var(--border-soft);
-  padding-left:24px;display:flex;flex-direction:column;justify-content:center;
-}
-.hero-highlight-title{
-  font-size:12px;text-transform:uppercase;letter-spacing:2px;
-  color:var(--muted);margin-bottom:6px;
-}
-.hero-highlight-box{
-  border-radius:16px;border:1px solid var(--border);
-  padding:14px 16px;background:#FAF7F6;
-}
-.hero-highlight-box p{
-  margin:0;font-size:13px;color:var(--text);line-height:1.6;
+/* ─── BODY ─── */
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* TÍTULOS DE SEÇÃO */
-.sec-head{text-align:left;margin-bottom:24px}
-.sec-head h2{
-  font-size:22px;font-weight:700;color:var(--rose-d);letter-spacing:.5px;
-  margin-bottom:4px;
-}
-.sec-head p{
-  font-size:12px;color:var(--muted);letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-/* CARDS HOME */
-.cards4{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:16px;margin-bottom:26px;
-}
-.feature-card{
-  border-radius:16px;padding:18px 18px 16px;cursor:pointer;transition:all .2s;
-  border:1px solid var(--border);text-align:left;background:var(--card-bg);
-}
-.feature-card:hover{
-  transform:translateY(-2px);border-color:var(--rose-d);
-  box-shadow:0 10px 24px rgba(0,0,0,.06);
-}
-.feature-card .fi{font-size:20px;margin-bottom:10px;display:block;opacity:.7}
-.feature-card h3{font-size:15px;font-weight:600;margin-bottom:5px;letter-spacing:.2px;color:var(--text)}
-.feature-card p{font-size:13px;line-height:1.5;color:var(--muted);margin-bottom:8px}
-.pill{
-  display:inline-block;font-size:11px;padding:4px 10px;border-radius:999px;
-  margin-top:2px;font-weight:500;letter-spacing:.3px;background:#F5ECE9;color:var(--rose-d);
+/* ─── NOISE TEXTURE ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .4;
 }
 
-/* DUO CARDS */
-.duo{
-  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  background: rgba(250,247,244,.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(212,160,144,.18);
+  transition: all .4s var(--ease);
 }
-.duo-card{
-  border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;
-  cursor:pointer;transition:all .2s;border:1px solid var(--border);background:var(--card-bg);
+nav.scrolled {
+  height: 58px;
+  background: rgba(250,247,244,.97);
+  box-shadow: 0 2px 40px rgba(122,56,38,.07);
 }
-.duo-card:hover{
-  transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.06);
+.nav-logo {
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-right: auto;
+  line-height: 1;
 }
-.duo-left{background:#FAF7F6}
-.duo-right{background:#F7F8FC}
-.duo-icon{font-size:20px;flex-shrink:0;opacity:.8}
-.duo-card h3{font-size:14px;font-weight:600;margin-bottom:4px;color:var(--text)}
-.duo-card p{font-size:13px;color:var(--muted);line-height:1.5}
+.nav-logo-main {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 6px;
+  color: var(--deep);
+  text-transform: uppercase;
+}
+.nav-logo-sub {
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--petal);
+  text-transform: uppercase;
+  margin-top: 2px;
+  font-weight: 300;
+}
+.nav-tabs {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.tab {
+  position: relative;
+  padding: 8px 16px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--ink2);
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  transition: color .25s;
+  opacity: .6;
+}
+.tab::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 16px; right: 16px;
+  height: 1px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s var(--ease);
+}
+.tab:hover { opacity: 1; }
+.tab:hover::after { transform: scaleX(.4); }
+.tab.active { opacity: 1; color: var(--deep); }
+.tab.active::after { transform: scaleX(1); }
 
-/* TENDÊNCIAS HOME */
-.trend-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;
-}
-.trend-card{
-  border-radius:14px;padding:16px;text-align:left;transition:all .2s;
-  cursor:pointer;border:1px solid var(--border-soft);background:var(--card-bg);
-}
-.trend-card:hover{
-  transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.05);
-}
-.trend-card .ti{font-size:18px;margin-bottom:8px;display:block;opacity:.7}
-.trend-card h4{font-size:14px;font-weight:600;margin-bottom:4px;color:var(--text)}
-.trend-card p{font-size:12px;line-height:1.4;color:var(--muted)}
+/* ─── PAGES ─── */
+.page { display: none; padding-top: 68px; }
+.page.active { display: block; }
 
-/* BLOG */
-.blog-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:18px;
-}
-.blog-card{
-  background:var(--card-bg);border-radius:18px;border:1px solid var(--border);
-  overflow:hidden;cursor:pointer;transition:all .25s;
-}
-.blog-card:hover{
-  transform:translateY(-2px);border-color:var(--rose-d);
-  box-shadow:0 14px 32px rgba(0,0,0,.06);
-}
-.blog-thumb{height:110px;display:flex;align-items:center;justify-content:center;font-size:32px;background:#F3EDF2;color:#5E3450}
-.blog-body{padding:16px 18px}
-.blog-cat{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;color:var(--muted)}
-.blog-card h3{font-size:14px;font-weight:600;margin-bottom:4px;line-height:1.4;color:var(--text)}
-.blog-card p{font-size:13px;color:var(--muted);line-height:1.5}
-.blog-meta{font-size:11px;color:#9C9C9C;margin-top:8px;display:flex;gap:8px;align-items:center}
+/* ─── WRAPPER ─── */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
 
-/* PODCAST – SPOTIFY (layout mais sofisticado) */
-.podcast-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
-  gap:24px;
-  align-items:flex-start;
+/* ─── HERO ─── */
+.hero {
+  min-height: calc(100vh - 68px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 48px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 48px;
 }
-.pod-hero{
-  background:var(--card-bg);
-  border-radius:18px;
-  border:1px solid var(--border);
-  padding:20px 20px 18px;
-  display:flex;
-  gap:16px;
-  align-items:flex-start;
-  box-shadow:0 18px 38px rgba(0,0,0,.04);
-  position:relative;
-  overflow:hidden;
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+  opacity: 0;
+  animation: orbFloat 1.2s var(--ease) forwards;
 }
-.pod-hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at top left,rgba(194,24,91,.13),transparent 55%);
-  opacity:.8;
-  pointer-events:none;
+.hero-orb-1 {
+  width: 500px; height: 500px;
+  top: -100px; right: -80px;
+  background: radial-gradient(circle, rgba(232,207,196,.55), transparent 70%);
+  animation-delay: .1s;
 }
-.pod-hero-inner{position:relative;z-index:1;display:flex;gap:18px;align-items:flex-start}
-.pod-art{
-  width:74px;height:74px;border-radius:16px;
-  background:#111;
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:22px;font-weight:600;
-  letter-spacing:2px;text-transform:uppercase;
+.hero-orb-2 {
+  width: 350px; height: 350px;
+  bottom: -60px; left: -60px;
+  background: radial-gradient(circle, rgba(201,169,110,.3), transparent 70%);
+  animation-delay: .3s;
 }
-.pod-info{flex:1}
-.pod-label{
-  font-size:11px;color:var(--muted);text-transform:uppercase;
-  letter-spacing:1.5px;margin-bottom:4px;
+.hero-orb-3 {
+  width: 200px; height: 200px;
+  top: 40%; left: 40%;
+  background: radial-gradient(circle, rgba(181,96,74,.12), transparent 70%);
+  animation-delay: .5s;
 }
-.pod-info h2{
-  font-size:18px;font-weight:600;margin-bottom:4px;color:var(--text);
+@keyframes orbFloat {
+  to { opacity: 1; }
 }
-.pod-info .pod-sub{
-  font-size:13px;color:var(--muted);margin-bottom:10px;
+.hero-left { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .3s forwards;
 }
-.pod-meta-row{
-  display:flex;flex-wrap:wrap;gap:10px;
-  align-items:center;margin-bottom:12px;
+.hero-eyebrow-line {
+  width: 32px; height: 1px;
+  background: var(--gold);
 }
-.pod-meta-pill{
-  font-size:11px;padding:4px 9px;border-radius:999px;
-  border:1px solid var(--border);color:var(--muted);
+.hero-eyebrow-text {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
 }
-.pod-embed{
-  border-radius:12px;overflow:hidden;
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6vw, 80px);
+  font-weight: 300;
+  line-height: 1.08;
+  color: var(--deep);
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeUp .9s var(--ease) .45s forwards;
 }
-
-/* lista de episódios refinada */
-.pod-sidebar{
-  display:flex;flex-direction:column;gap:10px;
+.hero-title em {
+  font-style: italic;
+  color: var(--rose);
 }
-.pod-sidebar-head{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:6px;
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--petal);
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .6s forwards;
 }
-.pod-sidebar-title{
-  font-size:13px;font-weight:600;color:var(--text);
-  text-transform:uppercase;letter-spacing:1.2px;
+.hero-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink2);
+  opacity: .75;
+  max-width: 420px;
+  margin-bottom: 40px;
+  animation: fadeUp .8s var(--ease) .7s forwards;
+  opacity: 0;
 }
-.pod-sidebar-sub{
-  font-size:11px;color:var(--muted);
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp .8s var(--ease) .85s forwards;
+  opacity: 0;
 }
-.ep-list{
-  display:flex;flex-direction:column;gap:6px;
-  margin-top:4px;
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--deep);
+  color: var(--cream);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all .3s var(--ease);
+  position: relative;
+  overflow: hidden;
 }
-.ep-item{
-  background:var(--card-bg);
-  border-radius:12px;
-  border:1px solid var(--border);
-  padding:9px 11px;
-  display:flex;gap:10px;align-items:center;
-  cursor:pointer;transition:all .2s;
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--rose);
+  transform: translateX(-100%);
+  transition: transform .4s var(--ease);
 }
-.ep-item:hover{
-  border-color:var(--rose-d);
-  background:#F9F4F3;
-  transform:translateX(2px);
-  box-shadow:0 8px 18px rgba(0,0,0,.05);
+.btn-primary span { position: relative; z-index: 1; }
+.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(122,56,38,.2); }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--ink2);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 400;
+  border: 1px solid var(--blush);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all .3s var(--ease);
 }
-.ep-num{
-  width:26px;height:26px;border-radius:8px;
-  background:#F1E1E5;color:var(--rose-d);
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:600;flex-shrink:0;
+.btn-secondary:hover { border-color: var(--rose); color: var(--deep); transform: translateY(-1px); }
+.hero-right {
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 1.2s var(--ease) .6s forwards;
+  opacity: 0;
 }
-.ep-info{flex:1}
-.ep-info h4{
-  font-size:13px;font-weight:600;margin-bottom:2px;color:var(--text);
+.hero-card-stack {
+  position: relative;
+  height: 480px;
 }
-.ep-info p{
-  font-size:12px;color:var(--muted);
+.hero-card {
+  position: absolute;
+  background: white;
+  border: 1px solid rgba(212,160,144,.2);
+  padding: 28px;
+  box-shadow: 0 24px 64px rgba(122,56,38,.1);
 }
-.ep-dur{
-  font-size:11px;color:#A58F9C;white-space:nowrap;margin-left:auto;
+.hero-card-main {
+  width: 320px;
+  top: 40px; right: 0;
+  z-index: 2;
 }
-
-/* CONTEÚDO */
-.ctabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
-.ctab-btn{
-  padding:7px 16px;border-radius:999px;cursor:pointer;font-size:13px;
-  border:1px solid var(--border);background:#F9F6F5;color:var(--muted);transition:all .2s;
-  font-weight:500;
+.hero-card-accent {
+  width: 240px;
+  top: 0; right: 260px;
+  z-index: 1;
+  background: var(--warm);
+  transform: rotate(-2deg);
 }
-.ctab-btn.active{
-  background:var(--rose-d);color:#fff;border-color:var(--rose-d)
+.hero-card-bottom {
+  width: 280px;
+  bottom: 20px; right: 30px;
+  z-index: 3;
+  background: var(--deep);
+  color: var(--cream);
+  transform: rotate(1deg);
 }
-.ctab-btn:hover:not(.active){background:#F2E6E4;border-color:var(--border);}
-.csec{display:none}
-.csec.active{display:block}
-
-.rsteps{display:flex;flex-direction:column;gap:10px}
-.rstep{
-  background:var(--card-bg);border-radius:14px;border:1px solid var(--border);padding:14px;
-  display:flex;gap:12px;align-items:flex-start;transition:border-color .2s;
+.hcard-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: .5;
+  margin-bottom: 8px;
 }
-.rstep:hover{border-color:var(--rose-d)}
-.rnum{
-  width:26px;height:26px;border-radius:999px;border:1px solid var(--rose-d);
-  color:var(--rose-d);display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:600;
+.hcard-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: inherit;
+  margin-bottom: 12px;
 }
-.rstep h4{font-size:14px;font-weight:600;margin-bottom:2px;color:var(--text)}
-.rstep p{font-size:13px;color:var(--muted);line-height:1.5}
-
-.ing-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;
+.hcard-meta {
+  font-size: 11px;
+  opacity: .6;
+  letter-spacing: 1px;
 }
-.ing-card{
-  background:var(--card-bg);border-radius:14px;border:1px solid var(--border);padding:14px;
-  text-align:left;transition:all .2s;
+.hcard-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid rgba(212,160,144,.4);
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  color: var(--petal);
 }
-.ing-card:hover{
-  border-color:var(--rose-d);transform:translateY(-2px);
-  box-shadow:0 8px 18px rgba(0,0,0,.05);
+.hcard-num {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--gold2);
+  line-height: 1;
+  margin-bottom: 6px;
 }
-.ing-card .ie{font-size:18px;margin-bottom:8px;display:block;opacity:.8}
-.ing-card h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
-.ing-card p{font-size:12px;color:var(--muted);line-height:1.4}
-
-.tip-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;
+.hcard-num-label { font-size: 11px; opacity: .7; letter-spacing: 1px; }
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 32px; left: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: .4;
+  animation: fadeIn 1s .8s forwards;
+  opacity: 0;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink2);
 }
-.tip-c{
-  border-radius:14px;padding:14px;border:1px solid var(--border);
-  transition:transform .2s,box-shadow .2s;background:var(--card-bg);
+.hero-scroll-line {
+  width: 48px; height: 1px;
+  background: var(--ink2);
+  animation: scrollPulse 2s 1.5s infinite;
 }
-.tip-c:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.05)}
-.t-pink,.t-purple,.t-yellow,.t-teal,.t-green,.t-orange{background:var(--card-bg);}
-.tip-c h4{font-size:13px;font-weight:600;margin-bottom:4px;color:var(--text)}
-.tip-c p{font-size:13px;line-height:1.5;color:var(--muted)}
-
-.trend-list{display:flex;flex-direction:column;gap:10px}
-.tr-item{
-  background:var(--card-bg);border-radius:14px;border:1px solid var(--border);padding:14px;
-  display:flex;gap:14px;align-items:center;transition:all .2s;
+@keyframes scrollPulse {
+  0%,100% { width: 48px; opacity: .4; }
+  50% { width: 24px; opacity: .8; }
 }
-.tr-item:hover{border-color:var(--rose-d);transform:translateX(2px)}
-.tr-rank{
-  font-size:20px;font-weight:600;min-width:36px;color:var(--rose-d);
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.tr-info h4{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--text)}
-.tr-info p{font-size:13px;color:var(--muted)}
-.tr-badge{
-  margin-left:auto;font-size:11px;padding:4px 9px;border-radius:999px;
-  font-weight:500;white-space:nowrap;background:#F4E8EB;color:var(--rose-d);
-}
-
-/* QUIZ */
-.quiz-wrap{max-width:640px;margin:0 auto}
-.quiz-card{
-  background:var(--card-bg);border-radius:18px;border:1px solid var(--border);padding:24px;
-  box-shadow:0 8px 26px rgba(0,0,0,.04);
-}
-.qprog{display:flex;gap:4px;margin-bottom:18px}
-.qpdot{flex:1;height:4px;border-radius:999px;background:#E3D8D3;transition:all .3s}
-.qpdot.done{background:var(--rose-d)}
-.qpdot.cur{background:var(--pink)}
-.qstep{display:none}
-.qstep.active{display:block}
-.quiz-q{font-size:16px;font-weight:600;margin-bottom:4px;line-height:1.4;color:var(--text)}
-.quiz-hint{font-size:12px;color:var(--muted);margin-bottom:16px;font-style:italic}
-.qopts{display:grid;gap:8px}
-.qopt{
-  background:#F9F5F3;border:1px solid var(--border);border-radius:12px;padding:11px 12px;
-  cursor:pointer;font-size:13px;text-align:left;transition:all .2s;
-  display:flex;align-items:center;gap:10px;color:var(--text);font-weight:400;
-}
-.qopt span{font-size:16px;opacity:.85}
-.qopt:hover{border-color:var(--rose-d);background:#F3E7E5;transform:translateX(2px)}
-.qopt.sel{border-color:var(--rose-d);background:#F0E0E0;font-weight:500}
-.qnav{display:flex;gap:8px;margin-top:18px;justify-content:flex-end}
-.qres{text-align:center;padding:10px 0}
-.res-big{font-size:56px;margin-bottom:12px}
-.res-name{
-  font-size:20px;font-weight:700;color:var(--rose-d);margin-bottom:8px;
-}
-.res-desc{font-size:14px;color:var(--muted);line-height:1.7;max-width:420px;margin:0 auto 16px}
-.res-tips{
-  background:#FBF6F5;border-radius:14px;padding:14px;
-  text-align:left;margin-bottom:18px;border:1px solid var(--border);
-}
-.res-tips h4{font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text)}
-.res-tip{
-  font-size:13px;color:var(--muted);margin-bottom:4px;display:flex;gap:6px;
-  align-items:flex-start;
-}
-.tip-bul{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--rose-d);flex-shrink:0;margin-top:6px;
-}
-
-/* GAMES */
-.games-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;margin-bottom:20px;
-}
-.game-card{
-  border-radius:16px;padding:18px;cursor:pointer;transition:all .2s;
-  text-align:left;border:1px solid var(--border);background:var(--card-bg);
-}
-.game-card:hover{
-  transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.06);
-}
-.game-card .gi{font-size:20px;margin-bottom:8px;display:block;opacity:.7}
-.game-card h3{font-size:14px;font-weight:600;margin-bottom:4px;color:var(--text)}
-.game-card p{font-size:13px;line-height:1.4;margin-bottom:6px;color:var(--muted)}
-.game-area{
-  background:var(--card-bg);border-radius:16px;border:1px solid var(--border);padding:20px;
-  margin-top:4px;
-}
-.mem-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:360px;
-  margin:0 auto 14px;
-}
-.mcard{
-  height:64px;border-radius:12px;border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;font-size:24px;
-  cursor:pointer;transition:all .2s;background:#F8F3F2;user-select:none;
-}
-.mcard:hover:not(.matched){border-color:var(--rose-d);transform:scale(1.03)}
-.mcard.flipped{background:#F3E6E5;border-color:var(--rose-d)}
-.mcard.matched{background:#E6F3EA;border-color:#5B986D;cursor:default}
-.mcard.hidden{background:#F8F3F2;color:transparent}
-.gstats{
-  display:flex;gap:10px;font-size:12px;color:var(--muted);justify-content:center;
-}
-.gstats strong{color:var(--rose-d)}
-
-/* FOOTER */
-footer{
-  max-width:1100px;margin:0 auto 20px;padding:0 24px;
-  font-size:11px;color:#9C9C9C;text-align:center;
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
-/* RESPONSIVO */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:32px 24px}
-  .hero-right{border-left:none;border-top:1px solid var(--border-soft);padding-left:0;padding-top:20px;margin-top:8px}
-  .podcast-layout{
-    grid-template-columns:1fr;
-  }
+/* ─── SECTION HEADER ─── */
+.section-wrap { padding: 72px 0 48px; }
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
 }
-@media(max-width:768px){
-  .page{padding:24px 16px}
-  .hero{padding:28px 18px}
-  .hero h1{font-size:32px}
-  nav .nav-tabs{display:none}
+.section-label-line { width: 24px; height: 1px; background: var(--gold); }
+.section-label-text {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--deep);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.section-title em { font-style: italic; color: var(--rose); }
+
+/* ─── HOME GRID ─── */
+.home-features {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--blush);
+  border: 1px solid var(--blush);
+  margin-bottom: 64px;
+}
+.feat-card {
+  background: var(--cream);
+  padding: 32px 24px;
+  cursor: pointer;
+  transition: background .3s, transform .3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.feat-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s var(--ease);
+}
+.feat-card:hover { background: var(--warm); }
+.feat-card:hover::before { transform: scaleX(1); }
+.feat-icon {
+  font-size: 22px;
+  margin-bottom: 16px;
+  display: block;
+  opacity: .75;
+}
+.feat-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--deep);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.feat-card p {
+  font-size: 12px;
+  color: var(--ink2);
+  opacity: .65;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.feat-count {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 400;
+}
+
+/* ─── EDITORIAL STRIP ─── */
+.editorial-strip {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  margin-bottom: 64px;
+}
+.editorial-main {
+  background: var(--deep);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .3s var(--ease);
+}
+.editorial-main:hover { transform: scale(1.005); }
+.editorial-main::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,.2), transparent 70%);
+}
+.editorial-main-num {
+  font-family: var(--font-display);
+  font-size: 120px;
+  font-weight: 300;
+  color: rgba(255,255,255,.06);
+  position: absolute;
+  bottom: -20px; right: 16px;
+  line-height: 1;
+  pointer-events: none;
+}
+.edit-label {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.edit-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.edit-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  max-width: 380px;
+}
+.editorial-side { display: flex; flex-direction: column; gap: 24px; }
+.editorial-card-sm {
+  background: white;
+  border: 1px solid rgba(212,160,144,.15);
+  padding: 24px;
+  cursor: pointer;
+  transition: all .3s var(--ease);
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.editorial-card-sm::after {
+  content: '→';
+  position: absolute;
+  right: 20px; top: 50%;
+  transform: translate(8px,-50%);
+  opacity: 0;
+  font-size: 16px;
+  color: var(--rose);
+  transition: all .3s var(--ease);
+}
+.editorial-card-sm:hover { border-color: var(--rose); background: var(--warm); }
+.editorial-card-sm:hover::after { transform: translate(0,-50%); opacity: 1; }
+.sm-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--petal); margin-bottom: 8px; }
+.sm-title { font-family: var(--font-display); font-size: 17px; font-weight: 400; color: var(--deep); line-height: 1.3; margin-bottom: 6px; }
+.sm-desc { font-size: 12px; color: var(--ink2); opacity: .6; line-height: 1.6; }
+
+/* ─── TENDÊNCIAS ─── */
+.trends-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 0;
+}
+.trend-item {
+  padding: 24px 20px;
+  border: 1px solid var(--blush);
+  background: white;
+  cursor: pointer;
+  transition: all .3s var(--ease);
+  position: relative;
+}
+.trend-item:hover { border-color: var(--rose); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(122,56,38,.1); }
+.trend-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--blush);
+  line-height: 1;
+  margin-bottom: 12px;
+  transition: color .3s;
+}
+.trend-item:hover .trend-num { color: var(--petal); }
+.trend-item h4 { font-family: var(--font-display); font-size: 17px; font-weight: 400; color: var(--deep); margin-bottom: 6px; }
+.trend-item p { font-size: 12px; color: var(--ink2); opacity: .6; line-height: 1.6; }
+
+/* ─── BLOG ─── */
+.blog-featured {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+  gap: 1px;
+  background: var(--blush);
+  border: 1px solid var(--blush);
+  margin-bottom: 16px;
+}
+
+.blog-card {
+  background: var(--cream);
+  cursor: pointer;
+  transition: background .3s;
+  overflow: hidden;
+  position: relative;
+}
+.blog-card:hover { background: var(--warm); }
+.blog-thumb-large {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  background: linear-gradient(135deg, var(--warm), var(--blush));
+  position: relative;
+}
+.blog-thumb-sm {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  background: linear-gradient(135deg, var(--warm), var(--blush));
+}
+.blog-body { padding: 24px; }
+.blog-cat {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+.blog-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--deep);
+  margin-bottom: 8px;
+}
+.blog-card h3.large { font-size: 22px; }
+.blog-card p { font-size: 12px; color: var(--ink2); opacity: .65; line-height: 1.7; }
+.blog-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 10px;
+  color: var(--petal);
+  letter-spacing: 1px;
+}
+.blog-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--petal); }
+.blog-row2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--blush);
+  border: 1px solid var(--blush);
+  border-top: none;
+}
+
+/* ─── PODCAST ─── */
+.podcast-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.pod-feature {
+  background: var(--deep);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+.pod-feature::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: -100px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,.12), transparent 60%);
+  pointer-events: none;
+}
+.pod-feature::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; right: -60px;
+  width: 250px; height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(181,96,74,.15), transparent 60%);
+  pointer-events: none;
+}
+.pod-inner { position: relative; z-index: 1; }
+.pod-eyebrow {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.pod-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+.pod-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  margin-bottom: 28px;
+  font-style: italic;
+}
+.pod-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.pod-tag {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  padding: 5px 12px;
+  border: 1px solid rgba(201,169,110,.35);
+  color: var(--gold2);
+  text-transform: uppercase;
+}
+.pod-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: var(--gold);
+  color: var(--deep);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+  transition: all .3s var(--ease);
+}
+.pod-btn:hover { background: var(--gold2); transform: translateY(-1px); }
+.pod-note { font-size: 11px; color: rgba(255,255,255,.3); margin-top: 12px; }
+.pod-list { display: flex; flex-direction: column; gap: 0; }
+.pod-list-head {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--blush);
+  margin-bottom: 0;
+}
+.pod-list-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--deep);
+  margin-bottom: 2px;
+}
+.pod-list-sub { font-size: 11px; color: var(--petal); letter-spacing: 1px; }
+.ep-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(212,160,144,.15);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: all .25s var(--ease);
+}
+.ep-item:hover { padding-left: 8px; }
+.ep-num {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--petal);
+  width: 28px;
+  flex-shrink: 0;
+  opacity: .7;
+}
+.ep-info { flex: 1; min-width: 0; }
+.ep-info h4 { font-size: 13px; font-weight: 400; color: var(--ink); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ep-info p { font-size: 11px; color: var(--petal); opacity: .7; font-style: italic; }
+.ep-dur { font-size: 11px; color: var(--petal); opacity: .6; flex-shrink: 0; letter-spacing: 1px; }
+
+/* ─── CONTEÚDO ─── */
+.content-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--blush);
+  margin-bottom: 32px;
+}
+.ctab-btn {
+  padding: 12px 24px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--ink2);
+  opacity: .5;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all .25s;
+}
+.ctab-btn.active { opacity: 1; color: var(--deep); border-bottom-color: var(--rose); }
+.ctab-btn:hover { opacity: .8; }
+.csec { display: none; }
+.csec.active { display: block; }
+.routine-steps { display: flex; flex-direction: column; gap: 0; }
+.rstep {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(212,160,144,.15);
+  align-items: start;
+  transition: background .2s;
+  cursor: default;
+}
+.rstep:hover { background: var(--warm); margin: 0 -48px; padding: 24px 48px; }
+.r-num {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--blush);
+  line-height: 1;
+  transition: color .3s;
+}
+.rstep:hover .r-num { color: var(--petal); }
+.rstep h4 { font-size: 14px; font-weight: 500; color: var(--deep); margin-bottom: 6px; letter-spacing: .5px; }
+.rstep p { font-size: 13px; color: var(--ink2); opacity: .65; line-height: 1.7; }
+.ing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--blush);
+  border: 1px solid var(--blush);
+}
+.ing-card {
+  background: var(--cream);
+  padding: 24px 20px;
+  transition: background .25s;
+  cursor: default;
+}
+.ing-card:hover { background: var(--warm); }
+.ing-icon { font-size: 20px; margin-bottom: 12px; display: block; opacity: .75; }
+.ing-card h4 { font-family: var(--font-display); font-size: 16px; font-weight: 400; color: var(--deep); margin-bottom: 6px; }
+.ing-card p { font-size: 12px; color: var(--ink2); opacity: .6; line-height: 1.6; }
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.tip-card {
+  background: white;
+  border: 1px solid rgba(212,160,144,.2);
+  padding: 24px;
+  transition: all .3s var(--ease);
+}
+.tip-card:hover { border-color: var(--rose); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(122,56,38,.08); }
+.tip-card h4 { font-family: var(--font-display); font-size: 17px; font-weight: 400; color: var(--deep); margin-bottom: 10px; }
+.tip-card p { font-size: 13px; color: var(--ink2); opacity: .65; line-height: 1.7; }
+.trend-list { display: flex; flex-direction: column; gap: 0; }
+.tr-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(212,160,144,.15);
+  cursor: default;
+  transition: background .2s, padding .3s;
+}
+.tr-row:hover { background: var(--warm); padding: 20px 24px; margin: 0 -24px; }
+.tr-rank {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--blush);
+  min-width: 44px;
+  transition: color .3s;
+}
+.tr-row:hover .tr-rank { color: var(--petal); }
+.tr-info { flex: 1; }
+.tr-info h4 { font-family: var(--font-display); font-size: 17px; font-weight: 400; color: var(--deep); margin-bottom: 4px; }
+.tr-info p { font-size: 12px; color: var(--ink2); opacity: .6; line-height: 1.5; }
+.tr-tag {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid var(--blush);
+  color: var(--rose);
+  white-space: nowrap;
+  transition: border-color .3s;
+}
+.tr-row:hover .tr-tag { border-color: var(--rose); }
+
+/* ─── QUIZ ─── */
+.quiz-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.quiz-sidebar {
+  padding: 32px;
+  background: var(--deep);
+  position: sticky;
+  top: 88px;
+}
+.quiz-sidebar-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+.qprog-list { display: flex; flex-direction: column; gap: 8px; }
+.qp-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: .35;
+  transition: opacity .3s;
+}
+.qp-item.done, .qp-item.cur { opacity: 1; }
+.qp-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--petal);
+  flex-shrink: 0;
+  transition: background .3s;
+}
+.qp-item.done .qp-dot { background: var(--gold); border-color: var(--gold); }
+.qp-item.cur .qp-dot { background: var(--rose); border-color: var(--rose); }
+.qp-label { font-size: 11px; color: rgba(255,255,255,.7); letter-spacing: 1px; }
+.qstep { display: none; }
+.qstep.active { display: block; }
+.quiz-q {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--deep);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.quiz-hint { font-size: 13px; color: var(--ink2); opacity: .55; margin-bottom: 28px; font-style: italic; }
+.qopts { display: flex; flex-direction: column; gap: 10px; }
+.qopt {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  background: white;
+  border: 1px solid rgba(212,160,144,.25);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  transition: all .25s var(--ease);
+  text-align: left;
+}
+.qopt-icon { font-size: 18px; opacity: .8; flex-shrink: 0; }
+.qopt:hover { border-color: var(--rose); background: var(--warm); transform: translateX(6px); }
+.qopt.sel { border-color: var(--rose); background: var(--warm); border-left: 3px solid var(--rose); }
+.qnav { display: flex; gap: 12px; margin-top: 28px; }
+.qres { padding: 0; }
+.qres-header { margin-bottom: 32px; }
+.qres-emoji { font-size: 56px; margin-bottom: 16px; }
+.qres-name {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--deep);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+.qres-name em { font-style: italic; color: var(--rose); }
+.qres-desc { font-size: 14px; line-height: 1.8; color: var(--ink2); opacity: .7; max-width: 480px; margin-bottom: 32px; }
+.qres-tips {
+  background: white;
+  border: 1px solid rgba(212,160,144,.2);
+  padding: 28px;
+  margin-bottom: 28px;
+}
+.qres-tips-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--deep);
+  margin-bottom: 16px;
+  letter-spacing: .5px;
+}
+.qtip {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--ink2);
+  opacity: .75;
+  line-height: 1.6;
+}
+.qtip-line {
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 10px;
+}
+.qres-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ─── GAMES ─── */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--blush);
+  border: 1px solid var(--blush);
+  margin-bottom: 24px;
+}
+.game-card {
+  background: var(--cream);
+  padding: 28px 24px;
+  cursor: pointer;
+  transition: background .3s;
+  position: relative;
+}
+.game-card:hover { background: var(--warm); }
+.game-card.disabled { opacity: .45; cursor: not-allowed; }
+.game-card.disabled:hover { background: var(--cream); }
+.game-icon { font-size: 24px; margin-bottom: 14px; display: block; opacity: .7; }
+.game-card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 400; color: var(--deep); margin-bottom: 6px; }
+.game-card p { font-size: 12px; color: var(--ink2); opacity: .6; line-height: 1.6; margin-bottom: 12px; }
+.game-cta {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 400;
+}
+.game-area {
+  background: white;
+  border: 1px solid rgba(212,160,144,.2);
+  padding: 32px;
+}
+.game-area-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--blush);
+}
+.game-area-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--deep);
+}
+.mem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto 20px;
+}
+.mcard {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+  border: 1px solid var(--blush);
+  background: var(--warm);
+  transition: all .25s var(--ease);
+  user-select: none;
+}
+.mcard:hover:not(.matched) { border-color: var(--rose); transform: scale(1.04); }
+.mcard.flipped { background: white; border-color: var(--rose); }
+.mcard.matched { background: #eef5f0; border-color: var(--sage); cursor: default; }
+.mcard.hidden { background: var(--warm); color: transparent; }
+.gstats {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--ink2);
+  opacity: .65;
+  letter-spacing: 1px;
+}
+.gstats strong { color: var(--deep); }
+.triv-q {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--deep);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.triv-hint { font-size: 12px; color: var(--petal); font-style: italic; margin-bottom: 20px; }
+.pair-tags {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.pair-tag {
+  padding: 16px 28px;
+  border: 1px solid var(--blush);
+  background: white;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--deep);
+}
+.pair-plus { font-size: 24px; color: var(--blush); font-weight: 300; }
+.pair-question { text-align: center; font-size: 14px; color: var(--ink2); margin-bottom: 20px; }
+.pair-actions { display: flex; gap: 12px; justify-content: center; }
+.game-result-panel {
+  background: var(--deep);
+  padding: 24px;
+  margin-top: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.grp-icon { font-size: 22px; flex-shrink: 0; }
+.grp-text { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,.8); }
+
+/* ─── FOOTER ─── */
+.site-footer {
+  border-top: 1px solid var(--blush);
+  padding: 32px 0 28px;
+  margin-top: 80px;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--deep);
+  text-transform: uppercase;
+}
+.footer-note { font-size: 11px; color: var(--petal); opacity: .7; letter-spacing: .5px; }
+
+/* ─── HOVER UNDERLINE LINK ─── */
+.hlink {
+  color: var(--rose);
+  text-decoration: none;
+  position: relative;
+}
+.hlink::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .3s var(--ease);
+}
+.hlink:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .wrap { padding: 0 24px; }
+  .hero { grid-template-columns: 1fr; padding: 48px 24px 40px; }
+  .hero-right { display: none; }
+  .home-features { grid-template-columns: repeat(2, 1fr); }
+  .editorial-strip { grid-template-columns: 1fr; }
+  .blog-featured { grid-template-columns: 1fr; }
+  .blog-row2 { grid-template-columns: 1fr 1fr; }
+  .podcast-layout { grid-template-columns: 1fr; }
+  .quiz-shell { grid-template-columns: 1fr; }
+  .quiz-sidebar { display: none; }
+  .ing-grid { grid-template-columns: repeat(2, 1fr); }
+  .tips-grid { grid-template-columns: 1fr 1fr; }
+  .trends-grid { grid-template-columns: 1fr 1fr; }
+  .games-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+}
+@media (max-width: 600px) {
+  nav .nav-tabs { display: none; }
+  .hero h1 { font-size: 44px; }
+  .home-features { grid-template-columns: 1fr; }
+  .blog-row2 { grid-template-columns: 1fr; }
+  .tips-grid { grid-template-columns: 1fr; }
+  .trends-grid { grid-template-columns: 1fr; }
+  .games-grid { grid-template-columns: 1fr; }
+  .ing-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <div class="logo" onclick="showPage('home')">
-      <div class="logo-main">LUMINA</div>
-      <div class="logo-sub">BEAUTY & CARE</div>
-    </div>
-    <div class="nav-tabs">
-      <button class="tab active" onclick="showPage('home',this)">Início</button>
-      <button class="tab" onclick="showPage('blog',this)">Blog</button>
-      <button class="tab" onclick="showPage('podcast',this)">Podcast</button>
-      <button class="tab" onclick="showPage('conteudo',this)">Conteúdo</button>
-      <button class="tab" onclick="showPage('quiz',this)">Quiz</button>
-      <button class="tab" onclick="showPage('games',this)">Jogos</button>
-    </div>
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-main">Lumina</div>
+    <div class="nav-logo-sub">Beauty & Care</div>
+  </div>
+  <div class="nav-tabs">
+    <button class="tab active" onclick="showPage('home',this)">Início</button>
+    <button class="tab" onclick="showPage('blog',this)">Blog</button>
+    <button class="tab" onclick="showPage('podcast',this)">Podcast</button>
+    <button class="tab" onclick="showPage('conteudo',this)">Conteúdo</button>
+    <button class="tab" onclick="showPage('quiz',this)">Quiz</button>
+    <button class="tab" onclick="showPage('games',this)">Jogos</button>
   </div>
 </nav>
 
-<!-- ===== HOME ===== -->
+<!-- ══════════ HOME ══════════ -->
 <div id="page-home" class="page active">
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-badge"><span></span> Bem‑vinda ao universo Lumina</div>
-      <h1>Lumina, beleza real</h1>
-      <p class="hero-tagline">Skincare, bem‑estar e autoestima em um só lugar.</p>
-      <p>Conteúdo aprofundado, curadoria de tendências e ferramentas interativas para você construir uma rotina que faz sentido para a sua pele — com informação séria e um toque de delicadeza.</p>
-      <div class="hero-btns">
-        <button class="btn-grad" onclick="showPage('conteudo',document.querySelectorAll('.tab')[3])">Explorar conteúdo</button>
-        <button class="btn-soft" onclick="showPage('quiz',document.querySelectorAll('.tab')[4])">Descobrir meu tipo de pele</button>
+  <div class="hero wrap">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">Beleza com intenção</span>
+      </div>
+      <h1 class="hero-title">A beleza que<br><em>ilumina</em> de dentro.</h1>
+      <p class="hero-subtitle">Skincare, bem-estar e autoestima em um só lugar</p>
+      <p class="hero-desc">Conteúdo aprofundado, curadoria de tendências e ferramentas interativas para construir uma rotina que faz sentido para a sua pele — com informação séria e um toque de delicadeza.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('conteudo',document.querySelectorAll('.tab')[3])"><span>Explorar conteúdo</span></button>
+        <button class="btn-secondary" onclick="showPage('quiz',document.querySelectorAll('.tab')[4])">Descobrir meu tipo de pele</button>
+      </div>
+      <div class="hero-scroll-hint">
+        <div class="hero-scroll-line"></div>
+        <span>Rolar</span>
       </div>
     </div>
+
     <div class="hero-right">
-      <p class="hero-highlight-title">Em destaque</p>
-      <div class="hero-highlight-box">
-        <p><strong>Podcast:</strong> “Cuidados com a pele depois da maquiagem” — um bate-papo direto sobre preparação de pele, limpeza correta e como evitar danos a longo prazo.</p>
+      <div class="hero-card-stack">
+        <div class="hero-card hero-card-accent">
+          <div class="hcard-label">Em destaque</div>
+          <div class="hcard-title">Retinol: guia completo para usar com segurança</div>
+          <div class="hcard-meta">Skincare · 8 min de leitura</div>
+        </div>
+        <div class="hero-card hero-card-main">
+          <div class="hcard-label">Tendência da semana</div>
+          <div class="hcard-title">Glazed skin — o brilho saudável que domina 2026 </div>
+          <div class="hcard-meta">Maquiagem & Skincare</div>
+          <div class="hcard-tag">Ver artigo →</div>
+        </div>
+        <div class="hero-card hero-card-bottom">
+          <div class="hcard-num">08</div>
+          <div class="hcard-num-label">Episódios no podcast</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="sec-head">
-    <h2>O que você encontra aqui</h2>
-    <p>conteúdo, ferramentas e inspiração</p>
-  </div>
-  <div class="cards4">
-    <div class="feature-card" onclick="showPage('blog',document.querySelectorAll('.tab')[1])">
-      <span class="fi">✍️</span>
-      <h3>Blog</h3>
-      <p>Artigos sobre skincare, maquiagem e tendências com linguagem simples e responsável.</p>
-      <span class="pill">12 artigos</span>
+  <div class="wrap">
+    <div class="section-wrap" style="padding-top:20px">
+      <div class="section-label">
+        <div class="section-label-line"></div>
+        <span class="section-label-text">O universo Lumina</span>
+      </div>
+      <div class="section-title">O que você encontra <em>aqui</em></div>
     </div>
-    <div class="feature-card" onclick="showPage('podcast',document.querySelectorAll('.tab')[2])">
-      <span class="fi">🎧</span>
-      <h3>Podcast</h3>
-      <p>Conversas com profissionais e criadores que vivem o universo da beleza.</p>
-      <span class="pill">8 episódios</span>
+
+    <div class="home-features">
+      <div class="feat-card" onclick="showPage('blog',document.querySelectorAll('.tab')[1])">
+        <span class="feat-icon">✍️</span>
+        <h3>Blog</h3>
+        <p>Artigos com linguagem simples e responsável sobre skincare, maquiagem e tendências.</p>
+        <div class="feat-count">12 artigos</div>
+      </div>
+      <div class="feat-card" onclick="showPage('podcast',document.querySelectorAll('.tab')[2])">
+        <span class="feat-icon">🎧</span>
+        <h3>Podcast</h3>
+        <p>Conversas com profissionais que vivem o universo da beleza.</p>
+        <div class="feat-count">8 episódios</div>
+      </div>
+      <div class="feat-card" onclick="showPage('conteudo',document.querySelectorAll('.tab')[3])">
+        <span class="feat-icon">💡</span>
+        <h3>Guias & Rotinas</h3>
+        <p>Passo a passo por tipo de pele, objetivo e ingrediente.</p>
+        <div class="feat-count">Atualizado</div>
+      </div>
+      <div class="feat-card" onclick="showPage('quiz',document.querySelectorAll('.tab')[4])">
+        <span class="feat-icon">✨</span>
+        <h3>Quiz de Pele</h3>
+        <p>6 perguntas para entender o comportamento da sua pele.</p>
+        <div class="feat-count">Resultado personalizado</div>
+      </div>
+      <div class="feat-card" onclick="showPage('games',document.querySelectorAll('.tab')[5])">
+        <span class="feat-icon">🎮</span>
+        <h3>Jogos</h3>
+        <p>Trivia, memória e desafios interativos sobre beleza.</p>
+        <div class="feat-count">3 jogos ativos</div>
+      </div>
     </div>
-    <div class="feature-card" onclick="showPage('conteudo',document.querySelectorAll('.tab')[3])">
-      <span class="fi">💡</span>
-      <h3>Guias & Rotinas</h3>
-      <p>Passo a passo por tipo de pele, idade e objetivo de cuidado.</p>
-      <span class="pill">Atualizado</span>
+
+    <div class="editorial-strip">
+      <div class="editorial-main" onclick="showPage('podcast',document.querySelectorAll('.tab')[2])">
+        <div class="editorial-main-num">08</div>
+        <div class="edit-label">Último episódio</div>
+        <div class="edit-title">Cuidados com a pele depois da maquiagem: o que a maioria faz errado</div>
+        <div class="edit-desc">Um bate-papo direto sobre preparação de pele, limpeza correta e como evitar danos a longo prazo com hábitos simples.</div>
+        <button class="pod-btn" style="background:var(--gold);color:var(--deep)">▶ Ouvir no Spotify</button>
+      </div>
+      <div class="editorial-side">
+        <div class="editorial-card-sm" onclick="showPage('quiz',document.querySelectorAll('.tab')[4])">
+          <div class="sm-label">Quiz</div>
+          <div class="sm-title">Qual é o seu tipo de pele?</div>
+          <div class="sm-desc">Melhore sua rotina entendendo o comportamento da sua pele ao longo do dia.</div>
+        </div>
+        <div class="editorial-card-sm" onclick="showPage('conteudo',document.querySelectorAll('.tab')[3])">
+          <div class="sm-label">Guia</div>
+          <div class="sm-title">Rotina noturna em 6 passos</div>
+          <div class="sm-desc">Do demaquilante ao óleo facial: a sequência certa para cada tipo de pele.</div>
+        </div>
+      </div>
     </div>
-    <div class="feature-card" onclick="showPage('quiz',document.querySelectorAll('.tab')[4])">
-      <span class="fi">✨</span>
-      <h3>Quiz de Pele</h3>
-      <p>6 perguntas para entender melhor a sua pele e o que ela precisa.</p>
-      <span class="pill">Resultados personalizados</span>
+
+    <div class="section-wrap" style="padding-top:16px">
+      <div class="section-label">
+        <div class="section-label-line"></div>
+        <span class="section-label-text">Agora em pauta</span>
+      </div>
+      <div class="section-title" style="font-size:30px;margin-bottom:24px">Tendências <em>da semana</em></div>
+    </div>
+    <div class="trends-grid" style="margin-bottom:80px">
+      <div class="trend-item">
+        <div class="trend-num">01</div>
+        <h4>Lábios glossy repaginados</h4>
+        <p>O gloss volta mais sofisticado, com fórmulas confortáveis e acabamento elegante para o dia a dia.</p>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num">02</div>
+        <h4>Skincare minimalista</h4>
+        <p>Rotinas enxutas com poucos produtos-chave, pensando em constância antes da coleção.</p>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num">03</div>
+        <h4>Cabelo mel sofisticado</h4>
+        <p>Iluminação suave que valoriza diferentes tons de pele, com foco em brilho e movimento.</p>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num">04</div>
+        <h4>Slugging com propósito</h4>
+        <p>Técnica oclusiva revisitada: quando vale a pena, para quem e como adaptar ao clima.</p>
+      </div>
     </div>
   </div>
 
-  <div class="duo">
-    <div class="duo-card duo-left" onclick="showPage('quiz',document.querySelectorAll('.tab')[4])">
-      <div class="duo-icon">◎</div>
-      <div>
-        <h3>Qual é o seu tipo de pele?</h3>
-        <p>Melhore sua rotina entendendo primeiro o comportamento da sua pele ao longo do dia.</p>
-      </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">Lumina</div>
+      <div class="footer-note">© <span class="yr"></span> Lumina Beauty & Care — conteúdo informativo, sem substituir orientação profissional.</div>
     </div>
-    <div class="duo-card duo-right" onclick="showPage('podcast',document.querySelectorAll('.tab')[2])">
-      <div class="duo-icon">▸</div>
-      <div>
-        <h3>Episódios para ouvir no seu tempo</h3>
-        <p>Conteúdo em áudio com especialistas, sem exageros nem promessas milagrosas.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="sec-head">
-    <h2>Tendências da semana</h2>
-    <p>o que está em pauta no universo da beleza</p>
-  </div>
-  <div class="trend-grid">
-    <div class="trend-card">
-      <span class="ti">●</span>
-      <h4>Lábios glossy repaginados</h4>
-      <p>O gloss volta mais sofisticado, com fórmulas confortáveis e acabamento elegante para o dia a dia.</p>
-    </div>
-    <div class="trend-card">
-      <span class="ti">●</span>
-      <h4>Skincare minimalista</h4>
-      <p>Rotinas enxutas com poucos produtos-chave, pensando mais em constância do que em coleção.</p>
-    </div>
-    <div class="trend-card">
-      <span class="ti">●</span>
-      <h4>Cabelo mel sofisticado</h4>
-      <p>Iluminação suave que valoriza diferentes tons de pele, com foco em brilho e movimento.</p>
-    </div>
-    <div class="trend-card">
-      <span class="ti">●</span>
-      <h4>Slugging com propósito</h4>
-      <p>Técnica oclusiva revisitada: quando vale a pena, para quem e como adaptar ao clima brasileiro.</p>
-    </div>
-  </div>
+  </footer>
 </div>
 
-<!-- ===== BLOG ===== -->
+<!-- ══════════ BLOG ══════════ -->
 <div id="page-blog" class="page">
-  <div class="sec-head"><h2>Blog Lumina</h2><p>conteúdo para estudar beleza com calma</p></div>
-  <div class="blog-grid">
-    <div class="blog-card">
-      <div class="blog-thumb">🌹</div>
-      <div class="blog-body">
-        <p class="blog-cat">Skincare</p>
-        <h3>Ácido hialurônico: o guia definitivo para iniciantes</h3>
-        <p>Como usar, com quais ingredientes combinar e que tipo de textura faz mais sentido para sua pele.</p>
-        <div class="blog-meta">Lumina <span class="pill" style="font-size:10px;padding:3px 9px">Popular</span></div>
+  <div class="wrap">
+    <div class="section-wrap">
+      <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Leitura</span></div>
+      <div class="section-title">Blog <em>Lumina</em></div>
+    </div>
+
+    <div class="blog-featured">
+      <div class="blog-card">
+        <div class="blog-thumb-large" style="background:linear-gradient(135deg,#f3e4df,#e8cfc4)">🌹</div>
+        <div class="blog-body">
+          <div class="blog-cat">Skincare</div>
+          <h3> Ácido hialurônico: o guia definitivo para iniciantes</h3>
+          <p>Como usar, com quais ingredientes combinar e que tipo de textura faz mais sentido para sua pele.</p>
+          <div class="blog-meta-row">Lumina<div class="blog-meta-dot"></div><span style="background:#f3e4df;padding:2px 8px;font-size:10px;letter-spacing:1px">Popular</span></div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb-sm" style="background:linear-gradient(135deg,#f3ede6,#e8ddd4)">💇‍♀️</div>
+        <div class="blog-body">
+          <div class="blog-cat">Cabelo</div>
+          <h3>Cronograma capilar: como montar o seu do zero</h3>
+          <p>Hidratação, nutrição e reconstrução: o que é cada etapa e como adaptar à sua rotina real.</p>
+          <div class="blog-meta-row">Lumina<div class="blog-meta-dot"></div>7 min</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb-sm" style="background:linear-gradient(135deg,#f0ede8,#e4ddd2)">☀️</div>
+        <div class="blog-body">
+          <div class="blog-cat">Proteção Solar</div>
+          <h3>Por que o protetor solar é o melhor anti-idade</h3>
+          <p>Como o FPS atua na prevenção de manchas, rugas e perda de colágeno ao longo dos anos.</p>
+          <div class="blog-meta-row">Lumina<div class="blog-meta-dot"></div><span style="background:#f3e4df;padding:2px 8px;font-size:10px;letter-spacing:1px">Essencial</span></div>
+        </div>
       </div>
     </div>
-    <div class="blog-card">
-      <div class="blog-thumb">💇‍♀️</div>
-      <div class="blog-body">
-        <p class="blog-cat">Cabelo</p>
-        <h3>Cronograma capilar: como montar o seu do zero</h3>
-        <p>Hidratação, nutrição e reconstrução: o que é cada etapa e como adaptar à sua rotina real.</p>
-        <div class="blog-meta">Lumina · 7 min</div>
+    <div class="blog-row2">
+      <div class="blog-card">
+        <div class="blog-thumb-sm" style="background:linear-gradient(135deg,#ede8f0,#ddd4e4)">💜</div>
+        <div class="blog-body">
+          <div class="blog-cat">K-beauty</div>
+          <h3>10 passos da skincare coreana: o que faz sentido manter</h3>
+          <div class="blog-meta-row">Lumina<div class="blog-meta-dot"></div>8 min</div>
+        </div>
       </div>
-    </div>
-    <div class="blog-card">
-      <div class="blog-thumb">☀️</div>
-      <div class="blog-body">
-        <p class="blog-cat">Proteção Solar</p>
-        <h3>Por que o protetor solar é o melhor anti‑idade</h3>
-        <p>Como o FPS atua na prevenção de manchas, rugas e perda de colágeno ao longo dos anos.</p>
-        <div class="blog-meta">Lumina · 4 min <span class="pill" style="font-size:10px;padding:3px 9px">Essencial</span></div>
+      <div class="blog-card">
+        <div class="blog-thumb-sm" style="background:linear-gradient(135deg,#f0ece3,#e8dfd0)">✨</div>
+        <div class="blog-body">
+          <div class="blog-cat">Maquiagem</div>
+          <h3>Contorno, luz e sombra para cada formato de rosto</h3>
+          <div class="blog-meta-row">Lumina<div class="blog-meta-dot"></div>6 min</div>
+        </div>
       </div>
-    </div>
-    <div class="blog-card">
-      <div class="blog-thumb">💜</div>
-      <div class="blog-body">
-        <p class="blog-cat">K‑beauty</p>
-        <h3>10 passos da skincare coreana: o que faz sentido manter</h3>
-        <p>Um olhar prático sobre a rotina coreana e como adaptá-la à realidade e ao clima do Brasil.</p>
-        <div class="blog-meta">Lumina · 8 min</div>
-      </div>
-    </div>
-    <div class="blog-card">
-      <div class="blog-thumb">✨</div>
-      <div class="blog-body">
-        <p class="blog-cat">Maquiagem</p>
-        <h3>Contorno, luz e sombra para cada formato de rosto</h3>
-        <p>Estratégias simples para valorizar seus traços sem pesar a maquiagem.</p>
-        <div class="blog-meta">Lumina · 6 min</div>
-      </div>
-    </div>
-    <div class="blog-card">
-      <div class="blog-thumb">🌿</div>
-      <div class="blog-body">
-        <p class="blog-cat">Sustentável</p>
-        <h3>Beleza sustentável: por onde começar</h3>
-        <p>Como fazer escolhas mais conscientes sem abrir mão de resultado e praticidade.</p>
-        <div class="blog-meta">Lumina · 5 min <span class="pill" style="font-size:10px;padding:3px 9px">Eco</span></div>
+      <div class="blog-card">
+        <div class="blog-thumb-sm" style="background:linear-gradient(135deg,#e8ede8,#d8e4d8)">🌿</div>
+        <div class="blog-body">
+          <div class="blog-cat">Sustentável</div>
+          <h3>Beleza sustentável: por onde começar</h3>
+          <div class="blog-meta-row">Lumina<div class="blog-meta-dot"></div><span style="background:#e8ede8;padding:2px 8px;font-size:10px;letter-spacing:1px">Eco</span></div>
+        </div>
       </div>
     </div>
   </div>
+  <footer class="site-footer"><div class="footer-inner"><div class="footer-logo">Lumina</div><div class="footer-note">© <span class="yr"></span> Lumina Beauty & Care</div></div></footer>
 </div>
 
-<!-- ===== PODCAST (SPOTIFY) ===== -->
+<!-- ══════════ PODCAST ══════════ -->
 <div id="page-podcast" class="page">
-  <div class="sec-head">
-    <h2>Lumina Podcast</h2>
-    <p>conversa leve sobre beleza, moda e saúde</p>
-  </div>
-
-  <div class="podcast-layout">
-    <!-- Coluna principal: episódio em destaque -->
-    <div class="pod-hero">
-      <div class="pod-hero-inner">
-        <div class="pod-info">
-          <div class="pod-label">Episódio em destaque</div>
-          <h2>Ep. 08 — Cuidados com a pele depois da maquiagem</h2>
-          <p class="pod-sub">Beleza, moda e saúde • 32 min</p>
-          <div class="pod-meta-row">
-            <span class="pod-meta-pill">Skincare</span>
-            <span class="pod-meta-pill">Limpeza de pele</span>
-            <span class="pod-meta-pill">Rotina real</span>
+  <div class="wrap">
+    <div class="section-wrap">
+      <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Ouça</span></div>
+      <div class="section-title">Lumina <em>Podcast</em></div>
+    </div>
+    <div class="podcast-layout">
+      <div class="pod-feature">
+        <div class="pod-inner">
+          <div class="pod-eyebrow">Episódio em destaque</div>
+          <div class="pod-title">Cuidados com a pele depois da maquiagem</div>
+          <div class="pod-sub">Beleza, moda e saúde · 32 min</div>
+          <div class="pod-tags">
+            <span class="pod-tag">Skincare</span>
+            <span class="pod-tag">Limpeza</span>
+            <span class="pod-tag">Rotina real</span>
           </div>
-          <div class="pod-embed">
-            <!-- PLAYER PRINCIPAL: VÍDEO -->
-            <iframe style="border-radius:12px"
-              src="https://open.spotify.com/embed/episode/12pkW2tSHcMk5nPdbrYzuK/video?utm_source=generator&theme=0&t=0"
-              width="100%" height="352" frameborder="0" allowfullscreen=""
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-            </iframe>
-          </div>
+          <a class="pod-btn" href="https://open.spotify.com/episode/12pkW2tSHcMk5nPdbrYzuK" target="_blank" rel="noopener">▶ Ouvir no Spotify</a>
+          <div class="pod-note">Abre em nova aba no Spotify</div>
+        </div>
+      </div>
+      <div>
+        <div class="pod-list-head" style="padding-bottom:16px;border-bottom:1px solid var(--blush);margin-bottom:4px">
+          <div class="pod-list-title">Todos os episódios</div>
+          <div class="pod-list-sub" style="font-size:11px;color:var(--petal);margin-top:2px;letter-spacing:1px">Clique para abrir no Spotify</div>
+        </div>
+        <div class="ep-list">
+          <a class="ep-item" href="https://open.spotify.com/episode/12pkW2tSHcMk5nPdbrYzuK" target="_blank" rel="noopener"><div class="ep-num">08</div><div class="ep-info"><h4>Cuidados com a pele depois da maquiagem</h4><p>Beleza, moda e saúde</p></div><div class="ep-dur">32 min</div></a>
+          <a class="ep-item" href="https://open.spotify.com/episode/0z329eumQA7OU8rq5wyDXF" target="_blank" rel="noopener"><div class="ep-num">07</div><div class="ep-info"><h4>Beleza, ciência e inspiração</h4><p>SullegeCast</p></div><div class="ep-dur">28 min</div></a>
+          <a class="ep-item" href="https://open.spotify.com/episode/3Rj3BItSeO4JzmoayXxEWq" target="_blank" rel="noopener"><div class="ep-num">06</div><div class="ep-info"><h4>A importância da beleza masculina</h4><p>Trunks do Futuro</p></div><div class="ep-dur">43 min</div></a>
+          <a class="ep-item" href="https://open.spotify.com/episode/2KvfTpmiLhbLyAgRIBlz4g" target="_blank" rel="noopener"><div class="ep-num">05</div><div class="ep-info"><h4>Qual é o desejo da beleza?</h4><p>Eu Desejo, Leonardo Karnal</p></div><div class="ep-dur">17 min</div></a>
+          <a class="ep-item" href="https://open.spotify.com/episode/0mC7Lq3U6qesaAubU0moHa" target="_blank" rel="noopener"><div class="ep-num">04</div><div class="ep-info"><h4>Autoestima e beleza: quebrando padrões</h4><p>Obra Aberta</p></div><div class="ep-dur">21 min</div></a>
+          <a class="ep-item" href="https://open.spotify.com/episode/3Rnok8LzxrAXyGC1qt5r6t" target="_blank" rel="noopener"><div class="ep-num">03</div><div class="ep-info"><h4>Bate-papo sobre cuidados com a pele</h4><p>Encontro com Marlla Esteves</p></div><div class="ep-dur">42 min</div></a>
+          <a class="ep-item" href="https://open.spotify.com/episode/76vHvPyG08uzBuerBRcH0l" target="_blank" rel="noopener"><div class="ep-num">02</div><div class="ep-info"><h4>A beleza é relativa?</h4><p>Platitudes</p></div><div class="ep-dur">59 min</div></a>
+          <a class="ep-item" href="https://open.spotify.com/episode/0ZE6BrZWMTo2Yak977EOyw" target="_blank" rel="noopener"><div class="ep-num">01</div><div class="ep-info"><h4>O que é beleza real?</h4><p>Especial Lumina</p></div><div class="ep-dur">29 min</div></a>
         </div>
       </div>
     </div>
-
-    <!-- Coluna lateral: lista de episódios -->
-    <div class="pod-sidebar">
-      <div class="pod-sidebar-head">
-        <div>
-          <div class="pod-sidebar-title">Todos os episódios</div>
-          <div class="pod-sidebar-sub">Clique para ouvir no player ao lado</div>
-        </div>
-      </div>
-
-      <div class="ep-list">
-
-        <!-- 08 – vídeo -->
-        <div class="ep-item" onclick="setEpisode(
-          'Ep. 08 — Cuidados com a pele depois da maquiagem',
-          'Beleza, moda e saúde • 32 min',
-          'https://open.spotify.com/embed/episode/12pkW2tSHcMk5nPdbrYzuK/video?utm_source=generator&theme=0&t=0'
-        )">
-          <div class="ep-num">08</div>
-          <div class="ep-info">
-            <h4>Cuidados com a pele depois da maquiagem</h4>
-            <p>Beleza, moda e saúde</p>
-          </div>
-          <div class="ep-dur">32 min</div>
-        </div>
-
-        <!-- 07 – vídeo -->
-        <div class="ep-item" onclick="setEpisode(
-          'Ep. 07 — Beleza, ciência e inspiração',
-          'SullegeCast • 28 min',
-          'https://open.spotify.com/embed/episode/0z329eumQA7OU8rq5wyDXF/video?utm_source=generator&t=0'
-        )">
-          <div class="ep-num">07</div>
-          <div class="ep-info">
-            <h4>Beleza, ciência e inspiração</h4>
-            <p>SullegeCast</p>
-          </div>
-          <div class="ep-dur">28 min</div>
-        </div>
-
-        <!-- 06 – ajustado para vídeo -->
-        <div class="ep-item" onclick="setEpisode(
-          'Ep. 06 — A importância da beleza masculina',
-          'Trunks do Futuro • 43 min',
-          'https://open.spotify.com/embed/episode/3Rj3BItSeO4JzmoayXxEWq/video?utm_source=generator&t=0'
-        )">
-          <div class="ep-num">06</div>
-          <div class="ep-info">
-            <h4>A importância da beleza masculina</h4>
-            <p>Trunks do Futuro</p>
-          </div>
-          <div class="ep-dur">43 min</div>
-        </div>
-
-        <!-- 05 – já era vídeo -->
-        <div class="ep-item" onclick="setEpisode(
-          'Ep. 05 — Qual é o desejo da beleza?',
-          'Eu Desejo, Leonardo Karnal • 17 min',
-          'https://open.spotify.com/embed/episode/2KvfTpmiLhbLyAgRIBlz4g/video?utm_source=generator&t=0'
-        )">
-          <div class="ep-num">05</div>
-          <div class="ep-info">
-            <h4>Qual é o desejo da beleza?</h4>
-            <p>Eu Desejo, Leonardo Karnal</p>
-          </div>
-          <div class="ep-dur">17 min</div>
-        </div>
-
-        <!-- 04 – já era vídeo -->
-        <div class="ep-item" onclick="setEpisode(
-          'Ep. 04 — Autoestima e beleza: quebrando padrões',
-          'Obra Aberta • 21 min',
-          'https://open.spotify.com/embed/episode/0mC7Lq3U6qesaAubU0moHa/video?utm_source=generator'
-        )">
-          <div class="ep-num">04</div>
-          <div class="ep-info">
-            <h4>Autoestima e beleza: quebrando padrões</h4>
-            <p>Obra Aberta</p>
-          </div>
-          <div class="ep-dur">21 min</div>
-        </div>
-
-        <!-- 03 – já era vídeo -->
-        <div class="ep-item" onclick="setEpisode(
-          'Ep. 03 — Bate‑papo sobre cuidados com a pele',
-          'Encontro com Marlla Esteves • 42 min',
-          'https://open.spotify.com/embed/episode/3Rnok8LzxrAXyGC1qt5r6t/video?utm_source=generator'
-        )">
-          <div class="ep-num">03</div>
-          <div class="ep-info">
-            <h4>Bate‑papo sobre cuidados com a pele</h4>
-            <p>Encontro com Marlla Esteves</p>
-          </div>
-          <div class="ep-dur">42 min</div>
-        </div>
-
-        <!-- 02 – já era vídeo -->
-        <div class="ep-item" onclick="setEpisode(
-          'Ep. 02 — A beleza é relativa?',
-          'Platitudes • 59 min',
-          'https://open.spotify.com/embed/episode/76vHvPyG08uzBuerBRcH0l/video?utm_source=generator'
-        )">
-          <div class="ep-num">02</div>
-          <div class="ep-info">
-            <h4>A beleza é relativa?</h4>
-            <p>Platitudes</p>
-          </div>
-          <div class="ep-dur">59 min</div>
-        </div>
-
-        <!-- 01 – ajustado para vídeo -->
-        <div class="ep-item" onclick="setEpisode(
-          'Ep. 01 — O que é beleza real?',
-          'Especial Lumina • 29 min',
-          'https://open.spotify.com/embed/episode/0ZE6BrZWMTo2Yak977EOyw/video?utm_source=generator'
-        )">
-          <div class="ep-num">01</div>
-          <div class="ep-info">
-            <h4>O que é beleza real?</h4>
-            <p>Especial Lumina</p>
-          </div>
-          <div class="ep-dur">29 min</div>
-        </div>
-
-      </div>
-    </div>
   </div>
+  <footer class="site-footer"><div class="footer-inner"><div class="footer-logo">Lumina</div><div class="footer-note">© <span class="yr"></span> Lumina Beauty & Care</div></div></footer>
 </div>
 
-<!-- ===== CONTEÚDO ===== -->
+<!-- ══════════ CONTEÚDO ══════════ -->
 <div id="page-conteudo" class="page">
-  <div class="sec-head"><h2>Conteúdo de beleza</h2><p>rotinas, ingredientes e tendências explicadas</p></div>
-  <div class="ctabs">
-    <button class="ctab-btn active" onclick="showCnt('rotinas',this)">Rotinas</button>
-    <button class="ctab-btn" onclick="showCnt('ingredientes',this)">Ingredientes</button>
-    <button class="ctab-btn" onclick="showCnt('dicas',this)">Dicas rápidas</button>
-    <button class="ctab-btn" onclick="showCnt('tendencias',this)">Tendências</button>
-  </div>
+  <div class="wrap">
+    <div class="section-wrap">
+      <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Aprenda</span></div>
+      <div class="section-title">Conteúdo de <em>beleza</em></div>
+    </div>
+    <div class="content-tabs">
+      <button class="ctab-btn active" onclick="showCnt('rotinas',this)">Rotinas</button>
+      <button class="ctab-btn" onclick="showCnt('ingredientes',this)">Ingredientes</button>
+      <button class="ctab-btn" onclick="showCnt('dicas',this)">Dicas rápidas</button>
+      <button class="ctab-btn" onclick="showCnt('tendencias',this)">Tendências</button>
+    </div>
 
-  <div id="cnt-rotinas" class="csec active">
-    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;font-style:italic">
-      Rotina noturna enxuta para pele seca
-    </p>
-    <div class="rsteps">
-      <div class="rstep">
-        <div class="rnum">1</div>
-        <div>
-          <h4>Demaquilante bifásico</h4>
-          <p>Remova maquiagem e filtro solar com movimentos suaves, sem fricção excessiva ao redor dos olhos.</p>
-        </div>
+    <div id="cnt-rotinas" class="csec active">
+      <p style="font-size:12px;color:var(--petal);letter-spacing:1px;margin-bottom:24px;font-style:italic">Rotina noturna enxuta para pele seca</p>
+      <div class="routine-steps">
+        <div class="rstep"><div class="r-num">01</div><div><h4>Demaquilante bifásico</h4><p>Remova maquiagem e filtro solar com movimentos suaves, sem fricção excessiva ao redor dos olhos.</p></div></div>
+        <div class="rstep"><div class="r-num">02</div><div><h4>Gel de limpeza suave</h4><p>Massageie em pele úmida por cerca de 60 segundos e enxágue com água fria ou morna.</p></div></div>
+        <div class="rstep"><div class="r-num">03</div><div><h4>Tônico ou essência hidratante</h4><p>Aplique com as mãos, em leves pressões, para ajudar na absorção e devolver conforto imediato.</p></div></div>
+        <div class="rstep"><div class="r-num">04</div><div><h4>Sérum antioxidante</h4><p>Vitamina C ou complexo antioxidante para reforçar a barreira e suavizar textura ao longo do tempo.</p></div></div>
+        <div class="rstep"><div class="r-num">05</div><div><h4>Hidratante nutritivo</h4><p>Textura creme, com ceramidas ou manteigas vegetais. Aplique enquanto a pele ainda está levemente úmida.</p></div></div>
+        <div class="rstep"><div class="r-num">06</div><div><h4>Óleo facial (opcional)</h4><p>2–3 gotas de óleo leve (como esqualano) para selar a hidratação em noites de maior ressecamento.</p></div></div>
       </div>
-      <div class="rstep">
-        <div class="rnum">2</div>
-        <div>
-          <h4>Gel de limpeza suave</h4>
-          <p>Massageie em pele úmida por cerca de 60 segundos e enxágue com água fria ou morna.</p>
-        </div>
+    </div>
+
+    <div id="cnt-ingredientes" class="csec">
+      <p style="font-size:12px;color:var(--petal);letter-spacing:1px;margin-bottom:24px;font-style:italic">Ativos que valem estudar com carinho</p>
+      <div class="ing-grid">
+        <div class="ing-card"><span class="ing-icon">🔬</span><h4>Retinol</h4><p>Anti-idade robusto. Use à noite, com adaptação lenta e proteção solar rigorosa.</p></div>
+        <div class="ing-card"><span class="ing-icon">💧</span><h4>Ácido hialurônico</h4><p>Humectante que puxa água para a pele. Funciona em todos os tipos.</p></div>
+        <div class="ing-card"><span class="ing-icon">✨</span><h4>Vitamina C</h4><p>Antioxidante e iluminador. Ideal pela manhã, sob o FPS.</p></div>
+        <div class="ing-card"><span class="ing-icon">🌸</span><h4>Niacinamida</h4><p>Equilibra oleosidade, ajuda em poros e uniformiza o tom.</p></div>
+        <div class="ing-card"><span class="ing-icon">🍑</span><h4>AHA / BHA</h4><p>Esfoliantes químicos que renovam a superfície e ajudam em acne.</p></div>
+        <div class="ing-card"><span class="ing-icon">🧬</span><h4>Peptídeos</h4><p>Suporte para firmeza e textura mais viçosa, com boa tolerância.</p></div>
+        <div class="ing-card"><span class="ing-icon">🌿</span><h4>Centella Asiática</h4><p>Calmante, cicatrizante, bom para peles sensibilizadas.</p></div>
+        <div class="ing-card"><span class="ing-icon">🌞</span><h4>Esqualano</h4><p>Óleo leve e estável, ótimo para selar a hidratação sem pesar.</p></div>
       </div>
-      <div class="rstep">
-        <div class="rnum">3</div>
-        <div>
-          <h4>Tônico ou essência hidratante</h4>
-          <p>Aplique com as mãos, em leves pressões, para ajudar na absorção e devolver conforto imediato.</p>
-        </div>
+    </div>
+
+    <div id="cnt-dicas" class="csec">
+      <p style="font-size:12px;color:var(--petal);letter-spacing:1px;margin-bottom:24px;font-style:italic">Ajustes pequenos que fazem diferença</p>
+      <div class="tips-grid">
+        <div class="tip-card"><h4>Hidratante labial noturno</h4><p>Use um produto mais espesso nos lábios antes de dormir. Você acorda com menos fissuras e linhas marcadas.</p></div>
+        <div class="tip-card"><h4>Água fria ao final da limpeza</h4><p>Finalizar o enxágue com água mais fria ajuda a reduzir vermelhidão e deixa a pele mais confortável.</p></div>
+        <div class="tip-card"><h4>Massagem facial de 2 minutos</h4><p>Durante o hidratante, faça movimentos ascendentes de dentro para fora, estimulando a circulação.</p></div>
+        <div class="tip-card"><h4>Reaplicar FPS ao longo do dia</h4><p>Se você fica exposta à luz ao longo do dia, vale reaplicar o protetor a cada 2–3 horas.</p></div>
+        <div class="tip-card"><h4>Fronha de seda ou cetim</h4><p>Reduz atrito no rosto e nos fios, minimizando frizz e marcas de travesseiro pela manhã.</p></div>
+        <div class="tip-card"><h4>Consistência antes de novidade</h4><p>Melhor poucos produtos usados todos os dias do que muitos ativos trocados o tempo todo.</p></div>
       </div>
-      <div class="rstep">
-        <div class="rnum">4</div>
-        <div>
-          <h4>Sérum antioxidante</h4>
-          <p>Vitamina C ou complexo antioxidante para reforçar a barreira e suavizar textura ao longo do tempo.</p>
-        </div>
-      </div>
-      <div class="rstep">
-        <div class="rnum">5</div>
-        <div>
-          <h4>Hidratante nutritivo</h4>
-          <p>Textura creme, com ceramidas ou manteigas vegetais. Aplique enquanto a pele ainda está levemente úmida.</p>
-        </div>
-      </div>
-      <div class="rstep">
-        <div class="rnum">6</div>
-        <div>
-          <h4>Óleo facial (opcional)</h4>
-          <p>2–3 gotas de óleo leve (como esqualano) para selar a hidratação em noites de maior ressecamento.</p>
-        </div>
+    </div>
+
+    <div id="cnt-tendencias" class="csec">
+      <p style="font-size:12px;color:var(--petal);letter-spacing:1px;margin-bottom:24px;font-style:italic">Movimentos que estão moldando o mercado</p>
+      <div class="trend-list">
+        <div class="tr-row"><div class="tr-rank">01</div><div class="tr-info"><h4>Skin cycling</h4><p>Revezar dias de ativos fortes com noites de recuperação para preservar a barreira da pele.</p></div><span class="tr-tag">Viral</span></div>
+        <div class="tr-row"><div class="tr-rank">02</div><div class="tr-info"><h4>Blush draping</h4><p>Blush subindo para a têmpora, criando estrutura e frescor sem contorno pesado.</p></div><span class="tr-tag">Maquiagem</span></div>
+        <div class="tr-row"><div class="tr-rank">03</div><div class="tr-info"><h4>Clean look</h4><p>Pele real em evidência, sobrancelhas naturais e foco em brilho saudável.</p></div><span class="tr-tag">Estilo</span></div>
+        <div class="tr-row"><div class="tr-rank">04</div><div class="tr-info"><h4>Barrier first</h4><p>Produtos pensados primeiro para fortalecer a barreira cutânea, depois para tratar.</p></div><span class="tr-tag">Skincare</span></div>
+        <div class="tr-row"><div class="tr-rank">05</div><div class="tr-info"><h4>Glazed skin</h4><p>Acabamento luminoso e hidratado, mas com textura mais leve e confortável.</p></div><span class="tr-tag">Glow</span></div>
       </div>
     </div>
   </div>
-
-  <div id="cnt-ingredientes" class="csec">
-    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;font-style:italic">
-      Ativos que valem estudar com carinho
-    </p>
-    <div class="ing-grid">
-      <div class="ing-card"><div class="ie">🔬</div><h4>Retinol</h4><p>Anti‑idade robusto. Use à noite, com adaptação lenta e proteção solar rigorosa.</p></div>
-      <div class="ing-card"><div class="ie">💧</div><h4>Ácido hialurônico</h4><p>Humectante que puxa água para a pele. Funciona em todos os tipos.</p></div>
-      <div class="ing-card"><div class="ie">✨</div><h4>Vitamina C</h4><p>Antioxidante e iluminador. Ideal pela manhã, sob o FPS.</p></div>
-      <div class="ing-card"><div class="ie">🌸</div><h4>Niacinamida</h4><p>Equilibra oleosidade, ajuda em poros e uniformiza o tom.</p></div>
-      <div class="ing-card"><div class="ie">🍑</div><h4>AHA / BHA</h4><p>Esfoliantes químicos que renovam a superfície e ajudam em acne.</p></div>
-      <div class="ing-card"><div class="ie">🧬</div><h4>Peptídeos</h4><p>Suporte para firmeza e textura mais viçosa, com boa tolerância.</p></div>
-      <div class="ing-card"><div class="ie">🌿</div><h4>Centella Asiática</h4><p>Calmante, cicatrizante, bom para peles sensibilizadas.</p></div>
-      <div class="ing-card"><div class="ie">🌞</div><h4>Esqualano</h4><p>Óleo leve e estável, ótimo para selar a hidratação sem pesar.</p></div>
-    </div>
-  </div>
-
-  <div id="cnt-dicas" class="csec">
-    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;font-style:italic">
-      Ajustes pequenos que fazem diferença
-    </p>
-    <div class="tip-grid">
-      <div class="tip-c t-pink">
-        <h4>Hidratante labial noturno</h4>
-        <p>Use um produto mais espesso nos lábios antes de dormir. Você acorda com menos fissuras e linhas marcadas.</p>
-      </div>
-      <div class="tip-c t-teal">
-        <h4>Água fria ao final da limpeza</h4>
-        <p>Finalizar o enxágue com água mais fria ajuda a reduzir vermelhidão e deixa a pele mais confortável.</p>
-      </div>
-      <div class="tip-c t-purple">
-        <h4>Massagem facial de 2 minutos</h4>
-        <p>Durante o hidratante, faça movimentos ascendentes e de dentro para fora, estimulando a circulação.</p>
-      </div>
-      <div class="tip-c t-yellow">
-        <h4>Reaplicar FPS</h4>
-        <p>Se você fica exposta à luz ao longo do dia, vale reaplicar o protetor a cada 2–3 horas.</p>
-      </div>
-      <div class="tip-c t-green">
-        <h4>Fronha de seda ou cetim</h4>
-        <p>Reduz atrito no rosto e nos fios, minimizando frizz e marcas de travesseiro pela manhã.</p>
-      </div>
-      <div class="tip-c t-orange">
-        <h4>Consistência antes de novidade</h4>
-        <p>Melhor poucos produtos usados todos os dias, do que muitos ativos trocados o tempo todo.</p>
-      </div>
-    </div>
-  </div>
-
-  <div id="cnt-tendencias" class="csec">
-    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;font-style:italic">
-      Movimentos que estão moldando o mercado
-    </p>
-    <div class="trend-list">
-      <div class="tr-item">
-        <div class="tr-rank">01</div>
-        <div class="tr-info">
-          <h4>Skin cycling</h4>
-          <p>Revezar dias de ativos fortes com noites de recuperação para preservar a barreira da pele.</p>
-        </div>
-        <span class="tr-badge">Viral</span>
-      </div>
-      <div class="tr-item">
-        <div class="tr-rank">02</div>
-        <div class="tr-info">
-          <h4>Blush draping</h4>
-          <p>Blush subindo para a têmpora, criando estrutura e frescor sem contorno pesado.</p>
-        </div>
-        <span class="tr-badge">Maquiagem</span>
-      </div>
-      <div class="tr-item">
-        <div class="tr-rank">03</div>
-        <div class="tr-info">
-          <h4>Clean look</h4>
-          <p>Pele real em evidência, sobrancelhas naturais e foco em brilho saudável.</p>
-        </div>
-        <span class="tr-badge">Estilo</span>
-      </div>
-      <div class="tr-item">
-        <div class="tr-rank">04</div>
-        <div class="tr-info">
-          <h4>Barrier first</h4>
-          <p>Produtos pensados primeiro para fortalecer a barreira cutânea, depois para tratar.</p>
-        </div>
-        <span class="tr-badge">Skincare</span>
-      </div>
-      <div class="tr-item">
-        <div class="tr-rank">05</div>
-        <div class="tr-info">
-          <h4>Glazed skin</h4>
-          <p>Acabamento luminoso e hidratado, mas com textura mais leve e confortável.</p>
-        </div>
-        <span class="tr-badge">Glow</span>
-      </div>
-    </div>
-  </div>
+  <footer class="site-footer"><div class="footer-inner"><div class="footer-logo">Lumina</div><div class="footer-note">© <span class="yr"></span> Lumina Beauty & Care</div></div></footer>
 </div>
 
-<!-- ===== QUIZ ===== -->
+<!-- ══════════ QUIZ ══════════ -->
 <div id="page-quiz" class="page">
-  <div class="sec-head"><h2>Descubra seu tipo de pele</h2><p>quiz rápido, resultado detalhado</p></div>
-  <div class="quiz-wrap">
-    <div class="quiz-card">
-      <div class="qprog">
-        <div class="qpdot cur" id="pd0"></div><div class="qpdot" id="pd1"></div>
-        <div class="qpdot" id="pd2"></div><div class="qpdot" id="pd3"></div>
-        <div class="qpdot" id="pd4"></div><div class="qpdot" id="pd5"></div>
-      </div>
-      <div class="qstep active" id="qs0">
-        <p class="quiz-q">Como sua pele fica no meio do dia, sem produtos?</p>
-        <p class="quiz-hint">Pense em um dia comum, várias horas depois da limpeza.</p>
-        <div class="qopts">
-          <button class="qopt" onclick="selOpt(this,'seca')"><span>🏜️</span>Seca, com sensação de repuxar.</button>
-          <button class="qopt" onclick="selOpt(this,'oleosa')"><span>✨</span>Brilhosa e com oleosidade visível.</button>
-          <button class="qopt" onclick="selOpt(this,'mista')"><span>🌗</span>Oleosa na testa e nariz, mais seca nas laterais.</button>
-          <button class="qopt" onclick="selOpt(this,'normal')"><span>🌸</span>Equilibrada, sem incômodo.</button>
-        </div>
-        <div class="qnav"><button class="btn-grad" onclick="nextQ()">Próxima</button></div>
-      </div>
-      <div class="qstep" id="qs1">
-        <p class="quiz-q">Com que frequência sua pele fica vermelha ou irritada?</p>
-        <p class="quiz-hint">Considere reações a produtos, clima, banho quente, etc.</p>
-        <div class="qopts">
-          <button class="qopt" onclick="selOpt(this,'sensivel')"><span>😣</span>Com frequência, vários produtos irritam.</button>
-          <button class="qopt" onclick="selOpt(this,'normal')"><span>😊</span>Quase nunca, é bem resistente.</button>
-          <button class="qopt" onclick="selOpt(this,'mista')"><span>🤔</span>Às vezes, dependendo do que uso.</button>
-          <button class="qopt" onclick="selOpt(this,'oleosa')"><span>💪</span>Não costuma irritar, mesmo com ativos.</button>
-        </div>
-        <div class="qnav">
-          <button class="btn-soft" onclick="prevQ()">Voltar</button>
-          <button class="btn-grad" onclick="nextQ()">Próxima</button>
+  <div class="wrap">
+    <div class="section-wrap">
+      <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Descubra</span></div>
+      <div class="section-title">Quiz de <em>pele</em></div>
+    </div>
+    <div class="quiz-shell">
+      <div class="quiz-sidebar">
+        <div class="quiz-sidebar-title">Descubra seu tipo de pele em 6 perguntas</div>
+        <div class="qprog-list" id="qProgList">
+          <div class="qp-item cur" data-q="0"><div class="qp-dot"></div><span class="qp-label">Como ela se comporta</span></div>
+          <div class="qp-item" data-q="1"><div class="qp-dot"></div><span class="qp-label">Irritação e sensibilidade</span></div>
+          <div class="qp-item" data-q="2"><div class="qp-dot"></div><span class="qp-label">Principais incômodos</span></div>
+          <div class="qp-item" data-q="3"><div class="qp-dot"></div><span class="qp-label">Após lavar o rosto</span></div>
+          <div class="qp-item" data-q="4"><div class="qp-dot"></div><span class="qp-label">Produto essencial</span></div>
+          <div class="qp-item" data-q="5"><div class="qp-dot"></div><span class="qp-label">Objetivo da rotina</span></div>
         </div>
       </div>
-      <div class="qstep" id="qs2">
-        <p class="quiz-q">Quais são seus principais incômodos com a pele?</p>
-        <p class="quiz-hint">Escolha o que mais te incomoda no momento.</p>
-        <div class="qopts">
-          <button class="qopt" onclick="selOpt(this,'oleosa')"><span>😤</span>Poros dilatados e brilho excessivo.</button>
-          <button class="qopt" onclick="selOpt(this,'seca')"><span>💔</span>Ressecamento, descamação ou aspereza.</button>
-          <button class="qopt" onclick="selOpt(this,'sensivel')"><span>🌡️</span>Vermelhidão, ardência, coceira.</button>
-          <button class="qopt" onclick="selOpt(this,'normal')"><span>😌</span>Nenhum em especial.</button>
+      <div class="quiz-main">
+        <div class="qstep active" id="qs0">
+          <p class="quiz-q">Como sua pele fica no meio do dia, sem produtos?</p>
+          <p class="quiz-hint">Pense em um dia comum, várias horas depois da limpeza.</p>
+          <div class="qopts">
+            <button class="qopt" onclick="selOpt(this,'seca')"><span class="qopt-icon">🏜️</span>Seca, com sensação de repuxar.</button>
+            <button class="qopt" onclick="selOpt(this,'oleosa')"><span class="qopt-icon">✨</span>Brilhosa e com oleosidade visível.</button>
+            <button class="qopt" onclick="selOpt(this,'mista')"><span class="qopt-icon">🌗</span>Oleosa na testa e nariz, mais seca nas laterais.</button>
+            <button class="qopt" onclick="selOpt(this,'normal')"><span class="qopt-icon">🌸</span>Equilibrada, sem incômodo.</button>
+          </div>
+          <div class="qnav"><button class="btn-primary" onclick="nextQ()"><span>Próxima</span></button></div>
         </div>
-        <div class="qnav">
-          <button class="btn-soft" onclick="prevQ()">Voltar</button>
-          <button class="btn-grad" onclick="nextQ()">Próxima</button>
+        <div class="qstep" id="qs1">
+          <p class="quiz-q">Com que frequência sua pele fica vermelha ou irritada?</p>
+          <p class="quiz-hint">Considere reações a produtos, clima, banho quente, etc.</p>
+          <div class="qopts">
+            <button class="qopt" onclick="selOpt(this,'sensivel')"><span class="qopt-icon">😣</span>Com frequência, vários produtos irritam.</button>
+            <button class="qopt" onclick="selOpt(this,'normal')"><span class="qopt-icon">😊</span>Quase nunca, é bem resistente.</button>
+            <button class="qopt" onclick="selOpt(this,'mista')"><span class="qopt-icon">🤔</span>Às vezes, dependendo do que uso.</button>
+            <button class="qopt" onclick="selOpt(this,'oleosa')"><span class="qopt-icon">💪</span>Não costuma irritar, mesmo com ativos.</button>
+          </div>
+          <div class="qnav"><button class="btn-secondary" onclick="prevQ()">Voltar</button><button class="btn-primary" onclick="nextQ()"><span>Próxima</span></button></div>
         </div>
-      </div>
-      <div class="qstep" id="qs3">
-        <p class="quiz-q">Como a pele fica logo depois de lavar o rosto?</p>
-        <p class="quiz-hint">Sem passar hidratante, tônico ou qualquer outra coisa.</p>
-        <div class="qopts">
-          <button class="qopt" onclick="selOpt(this,'seca')"><span>😖</span>Fica esticada e desconfortável.</button>
-          <button class="qopt" onclick="selOpt(this,'normal')"><span>😊</span>Fica apenas limpa e fresca.</button>
-          <button class="qopt" onclick="selOpt(this,'oleosa')"><span>😅</span>Logo volta a ficar oleosa.</button>
-          <button class="qopt" onclick="selOpt(this,'sensivel')"><span>😬</span>Arde ou fica sensível.</button>
+        <div class="qstep" id="qs2">
+          <p class="quiz-q">Quais são seus principais incômodos com a pele?</p>
+          <p class="quiz-hint">Escolha o que mais te incomoda no momento.</p>
+          <div class="qopts">
+            <button class="qopt" onclick="selOpt(this,'oleosa')"><span class="qopt-icon">😤</span>Poros dilatados e brilho excessivo.</button>
+            <button class="qopt" onclick="selOpt(this,'seca')"><span class="qopt-icon">💔</span>Ressecamento, descamação ou aspereza.</button>
+            <button class="qopt" onclick="selOpt(this,'sensivel')"><span class="qopt-icon">🌡️</span>Vermelhidão, ardência, coceira.</button>
+            <button class="qopt" onclick="selOpt(this,'normal')"><span class="qopt-icon">😌</span>Nenhum em especial.</button>
+          </div>
+          <div class="qnav"><button class="btn-secondary" onclick="prevQ()">Voltar</button><button class="btn-primary" onclick="nextQ()"><span>Próxima</span></button></div>
         </div>
-        <div class="qnav">
-          <button class="btn-soft" onclick="prevQ()">Voltar</button>
-          <button class="btn-grad" onclick="nextQ()">Próxima</button>
+        <div class="qstep" id="qs3">
+          <p class="quiz-q">Como a pele fica logo depois de lavar o rosto?</p>
+          <p class="quiz-hint">Sem passar hidratante, tônico ou qualquer outra coisa.</p>
+          <div class="qopts">
+            <button class="qopt" onclick="selOpt(this,'seca')"><span class="qopt-icon">😖</span>Fica esticada e desconfortável.</button>
+            <button class="qopt" onclick="selOpt(this,'normal')"><span class="qopt-icon">😊</span>Fica apenas limpa e fresca.</button>
+            <button class="qopt" onclick="selOpt(this,'oleosa')"><span class="qopt-icon">😅</span>Logo volta a ficar oleosa.</button>
+            <button class="qopt" onclick="selOpt(this,'sensivel')"><span class="qopt-icon">😬</span>Arde ou fica sensível.</button>
+          </div>
+          <div class="qnav"><button class="btn-secondary" onclick="prevQ()">Voltar</button><button class="btn-primary" onclick="nextQ()"><span>Próxima</span></button></div>
         </div>
-      </div>
-      <div class="qstep" id="qs4">
-        <p class="quiz-q">Qual produto você não abre mão no dia a dia?</p>
-        <p class="quiz-hint">Aquele que você leva até em viagem curta.</p>
-        <div class="qopts">
-          <button class="qopt" onclick="selOpt(this,'seca')"><span>🧴</span>Hidratante bem cremoso.</button>
-          <button class="qopt" onclick="selOpt(this,'oleosa')"><span>🧹</span>Gel de limpeza ou tônico mais adstringente.</button>
-          <button class="qopt" onclick="selOpt(this,'sensivel')"><span>🌿</span>Produto calmante, água termal.</button>
-          <button class="qopt" onclick="selOpt(this,'normal')"><span>☀️</span>Protetor solar leve.</button>
+        <div class="qstep" id="qs4">
+          <p class="quiz-q">Qual produto você não abre mão no dia a dia?</p>
+          <p class="quiz-hint">Aquele que você leva até em viagem curta.</p>
+          <div class="qopts">
+            <button class="qopt" onclick="selOpt(this,'seca')"><span class="qopt-icon">🧴</span>Hidratante bem cremoso.</button>
+            <button class="qopt" onclick="selOpt(this,'oleosa')"><span class="qopt-icon">🧹</span>Gel de limpeza ou tônico mais adstringente.</button>
+            <button class="qopt" onclick="selOpt(this,'sensivel')"><span class="qopt-icon">🌿</span>Produto calmante, água termal.</button>
+            <button class="qopt" onclick="selOpt(this,'normal')"><span class="qopt-icon">☀️</span>Protetor solar leve.</button>
+          </div>
+          <div class="qnav"><button class="btn-secondary" onclick="prevQ()">Voltar</button><button class="btn-primary" onclick="nextQ()"><span>Próxima</span></button></div>
         </div>
-        <div class="qnav">
-          <button class="btn-soft" onclick="prevQ()">Voltar</button>
-          <button class="btn-grad" onclick="nextQ()">Próxima</button>
+        <div class="qstep" id="qs5">
+          <p class="quiz-q">Qual é o seu maior objetivo com skincare agora?</p>
+          <p class="quiz-hint">Ele pode mudar com o tempo — pense no momento atual.</p>
+          <div class="qopts">
+            <button class="qopt" onclick="selOpt(this,'oleosa')"><span class="qopt-icon">🎯</span>Controlar oleosidade e poros.</button>
+            <button class="qopt" onclick="selOpt(this,'seca')"><span class="qopt-icon">💧</span>Devolver hidratação e conforto.</button>
+            <button class="qopt" onclick="selOpt(this,'sensivel')"><span class="qopt-icon">🕊️</span>Acalmar e fortalecer a barreira.</button>
+            <button class="qopt" onclick="selOpt(this,'normal')"><span class="qopt-icon">✨</span>Manter glow e prevenir sinais.</button>
+          </div>
+          <div class="qnav"><button class="btn-secondary" onclick="prevQ()">Voltar</button><button class="btn-primary" onclick="finishQ()"><span>Ver resultado</span></button></div>
         </div>
-      </div>
-      <div class="qstep" id="qs5">
-        <p class="quiz-q">Qual é o seu maior objetivo com skincare agora?</p>
-        <p class="quiz-hint">Ele pode mudar com o tempo — pense no momento atual.</p>
-        <div class="qopts">
-          <button class="qopt" onclick="selOpt(this,'oleosa')"><span>🎯</span>Controlar oleosidade e poros.</button>
-          <button class="qopt" onclick="selOpt(this,'seca')"><span>💧</span>Devolver hidratação e conforto.</button>
-          <button class="qopt" onclick="selOpt(this,'sensivel')"><span>🕊️</span>Acalmar e fortalecer a barreira.</button>
-          <button class="qopt" onclick="selOpt(this,'normal')"><span>✨</span>Manter glow e prevenir sinais.</button>
-        </div>
-        <div class="qnav">
-          <button class="btn-soft" onclick="prevQ()">Voltar</button>
-          <button class="btn-grad" onclick="finishQ()">Ver resultado</button>
-        </div>
-      </div>
-
-      <div class="qstep" id="qs-res">
-        <div class="qres">
-          <div class="res-big" id="rEmoji">🌸</div>
-          <p class="res-name" id="rTitle">Pele Mista</p>
-          <p class="res-desc" id="rDesc"></p>
-          <div class="res-tips" id="rTips"></div>
-          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-            <button class="btn-grad" onclick="restartQ()">Refazer quiz</button>
-            <button class="btn-soft" onclick="showPage('conteudo',document.querySelectorAll('.tab')[3])">Ver rotinas sugeridas</button>
+        <div class="qstep" id="qs-res">
+          <div class="qres">
+            <div class="qres-header">
+              <div class="qres-emoji" id="rEmoji">🌸</div>
+              <p class="qres-name" id="rTitle">Pele <em>Mista</em></p>
+              <p class="qres-desc" id="rDesc"></p>
+            </div>
+            <div class="qres-tips">
+              <div class="qres-tips-title" id="rTipsTitle">Recomendações para você</div>
+              <div id="rTips"></div>
+            </div>
+            <div class="qres-actions">
+              <button class="btn-primary" onclick="restartQ()"><span>Refazer quiz</span></button>
+              <button class="btn-secondary" onclick="showPage('conteudo',document.querySelectorAll('.tab')[3])">Ver rotinas sugeridas</button>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
+  <footer class="site-footer"><div class="footer-inner"><div class="footer-logo">Lumina</div><div class="footer-note">© <span class="yr"></span> Lumina Beauty & Care</div></div></footer>
 </div>
 
-<!-- ===== GAMES ===== -->
+<!-- ══════════ GAMES ══════════ -->
 <div id="page-games" class="page">
-  <div class="sec-head"><h2>Jogos Lumina</h2><p>aprendizado leve e interativo</p></div>
-  <div class="games-grid">
-    <div class="game-card" onclick="startMem()">
-      <span class="gi">🃏</span>
-      <h3>Memória da Beleza</h3>
-      <p>Encontre pares de ícones de ingredientes e produtos de skincare.</p>
-      <span class="pill">Jogar</span>
+  <div class="wrap">
+    <div class="section-wrap">
+      <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Interativo</span></div>
+      <div class="section-title">Jogos <em>Lumina</em></div>
     </div>
-    <div class="game-card" onclick="startTriv()">
-      <span class="gi">🧠</span>
-      <h3>Trivia de Beleza</h3>
-      <p>Teste seus conhecimentos sobre proteção solar, ativos e maquiagem.</p>
-      <span class="pill">Jogar</span>
+    <div class="games-grid">
+      <div class="game-card" onclick="startMem()">
+        <span class="game-icon">🃏</span>
+        <h3>Memória da Beleza</h3>
+        <p>Encontre pares de ícones de ingredientes e produtos de skincare.</p>
+        <div class="game-cta">Jogar →</div>
+      </div>
+      <div class="game-card" onclick="startTriv()">
+        <span class="game-icon">🧠</span>
+        <h3>Trivia de Beleza</h3>
+        <p>Teste seus conhecimentos sobre proteção solar, ativos e maquiagem.</p>
+        <div class="game-cta">Jogar →</div>
+      </div>
+      <div class="game-card" onclick="startPair()">
+        <span class="game-icon">🔗</span>
+        <h3>Combinação de Ativos</h3>
+        <p>Será que esses ingredientes se dão bem juntos? Descubra.</p>
+        <div class="game-cta">Jogar →</div>
+      </div>
+      <div class="game-card disabled">
+        <span class="game-icon">🎨</span>
+        <h3>Monte o Look</h3>
+        <p>Em breve: combine produtos e veja diferentes propostas de maquiagem.</p>
+        <div class="game-cta">Em breve</div>
+      </div>
     </div>
-    <div class="game-card" onclick="startPair()">
-      <span class="gi">🔗</span>
-      <h3>Combinação de Ativos</h3>
-      <p>Será que esses ingredientes se dão bem juntos? Descubra.</p>
-      <span class="pill">Jogar</span>
-    </div>
-    <div class="game-card" style="cursor:default;opacity:.6">
-      <span class="gi">🎨</span>
-      <h3>Monte o Look</h3>
-      <p>Em breve: combine produtos e veja diferentes propostas de maquiagem.</p>
-      <span class="pill">Em breve</span>
+
+    <div class="game-area" id="gameArea" style="display:none">
+      <div id="memGame" style="display:none">
+        <div class="game-area-head">
+          <div class="game-area-title">Memória da Beleza</div>
+          <button class="btn-secondary" style="padding:7px 16px;font-size:11px" onclick="startMem()">Reiniciar</button>
+        </div>
+        <div class="mem-grid" id="memG"></div>
+        <div class="gstats">Movimentos: <strong id="mvs">0</strong>&nbsp;|&nbsp;Pares: <strong id="prs">0</strong> / 8&nbsp;|&nbsp;<span id="gmsg">Encontre os pares.</span></div>
+      </div>
+      <div id="trivGame" style="display:none">
+        <div class="game-area-head">
+          <div class="game-area-title">Trivia de Beleza</div>
+          <span id="trivSc" style="font-size:12px;color:var(--rose);letter-spacing:1px">Pontos: 0</span>
+        </div>
+        <div id="trivC"></div>
+      </div>
+      <div id="pairGame" style="display:none">
+        <div class="game-area-head">
+          <div class="game-area-title">Combinação de Ativos</div>
+          <span id="pairSc" style="font-size:12px;color:var(--rose);letter-spacing:1px">Pontos: 0</span>
+        </div>
+        <div id="pairC"></div>
+      </div>
     </div>
   </div>
-
-  <div class="game-area" id="gameArea" style="display:none">
-    <div id="memGame" style="display:none">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <p style="font-size:14px;font-weight:600;color:var(--text)">Memória da Beleza</p>
-        <button class="btn-soft" onclick="startMem()" style="padding:4px 10px;font-size:11px">Reiniciar</button>
-      </div>
-      <div class="mem-grid" id="memG"></div>
-      <div class="gstats">
-        Movimentos: <strong id="mvs">0</strong>&nbsp;|&nbsp;
-        Pares: <strong id="prs">0</strong>/8&nbsp;|&nbsp;
-        <span id="gmsg">Encontre os pares.</span>
-      </div>
-    </div>
-
-    <div id="trivGame" style="display:none">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <p style="font-size:14px;font-weight:600;color:var(--text)">Trivia de Beleza</p>
-        <span class="pill" id="trivSc">Pontos: 0</span>
-      </div>
-      <div id="trivC"></div>
-    </div>
-
-    <div id="pairGame" style="display:none">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <p style="font-size:14px;font-weight:600;color:var(--text)">Combinação de Ativos</p>
-        <span class="pill" id="pairSc">Pontos: 0</span>
-      </div>
-      <div id="pairC"></div>
-    </div>
-  </div>
+  <footer class="site-footer"><div class="footer-inner"><div class="footer-logo">Lumina</div><div class="footer-note">© <span class="yr"></span> Lumina Beauty & Care</div></div></footer>
 </div>
-
-<footer>
-  © <span id="year"></span> Lumina Beauty & Care · Conteúdo informativo, sem substituir orientação profissional.
-</footer>
 
 <script>
-// Navegação entre páginas
-function showPage(id,el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  if(el){
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    el.classList.add('active');
-  }
-  window.scrollTo({top:0,behavior:'smooth'});
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 30);
+});
+
+/* ── PAGES ── */
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (el) { document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); el.classList.add('active'); }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Tabs de conteúdo
-function showCnt(id,el){
-  document.querySelectorAll('.csec').forEach(s=>s.classList.remove('active'));
-  document.getElementById('cnt-'+id).classList.add('active');
-  document.querySelectorAll('.ctab-btn').forEach(t=>t.classList.remove('active'));
+/* ── CONTENT TABS ── */
+function showCnt(id, el) {
+  document.querySelectorAll('.csec').forEach(s => s.classList.remove('active'));
+  document.getElementById('cnt-' + id).classList.add('active');
+  document.querySelectorAll('.ctab-btn').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
 }
 
-// PODCAST – muda episódio do Spotify
-function setEpisode(title,subtitle,src){
-  const titleEl=document.querySelector('#page-podcast .pod-info h2');
-  const subEl=document.querySelector('#page-podcast .pod-info .pod-sub');
-  const iframe=document.querySelector('#page-podcast .pod-embed iframe');
-  if(titleEl)titleEl.textContent=title;
-  if(subEl)subEl.textContent=subtitle;
-  if(iframe)iframe.src=src;
-}
+/* ── QUIZ ── */
+let qIdx = 0, ans = [];
+const qLabels = ['Como ela se comporta','Irritação e sensibilidade','Principais incômodos','Após lavar o rosto','Produto essencial','Objetivo da rotina'];
 
-// QUIZ
-let qIdx=0,ans=[];
-function selOpt(el,v){
-  el.closest('.qopts').querySelectorAll('.qopt').forEach(o=>o.classList.remove('sel'));
-  el.classList.add('sel');ans[qIdx]=v;
+function selOpt(el, v) {
+  el.closest('.qopts').querySelectorAll('.qopt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel'); ans[qIdx] = v;
 }
-function nextQ(){
-  if(!ans[qIdx])return;
-  document.getElementById('qs'+qIdx).classList.remove('active');
-  qIdx++;document.getElementById('qs'+qIdx).classList.add('active');
+function nextQ() {
+  if (!ans[qIdx]) return;
+  document.getElementById('qs' + qIdx).classList.remove('active');
+  qIdx++; document.getElementById('qs' + qIdx).classList.add('active');
   updProg();
 }
-function prevQ(){
-  document.getElementById('qs'+qIdx).classList.remove('active');
-  qIdx--;document.getElementById('qs'+qIdx).classList.add('active');
+function prevQ() {
+  document.getElementById('qs' + qIdx).classList.remove('active');
+  qIdx--; document.getElementById('qs' + qIdx).classList.add('active');
   updProg();
 }
-function updProg(){
-  for(let i=0;i<6;i++){
-    let d=document.getElementById('pd'+i);
-    d.className='qpdot'+(i<qIdx?' done':i===qIdx?' cur':'');
-  }
+function updProg() {
+  document.querySelectorAll('#qProgList .qp-item').forEach((item, i) => {
+    item.classList.toggle('done', i < qIdx);
+    item.classList.toggle('cur', i === qIdx);
+  });
 }
-function finishQ(){
-  if(!ans[qIdx])return;
-  let c={seca:0,oleosa:0,sensivel:0,normal:0,mista:0};
-  ans.forEach(a=>c[a]=(c[a]||0)+1);
-  let t=Object.keys(c).reduce((a,b)=>c[a]>c[b]?a:b);
-  const rs={
-    oleosa:{
-      e:'✨',n:'Pele Oleosa',
-      d:'Sua pele produz mais sebo do que o necessário. O foco é equilibrar: limpeza suave, hidratação leve e proteção solar consistente.',
-      ts:[
-        'Prefira hidratantes oil‑free e não comedogênicos.',
-        'Niacinamida ajuda em poros, brilho e textura.',
-        'Use gel de limpeza suave de manhã e à noite.',
-        'Evite “secar demais” a pele — isso estimula mais óleo.',
-        'FPS com textura fluida ou em gel tende a ser mais confortável.'
-      ]
-    },
-    seca:{
-      e:'🌊',n:'Pele Seca',
-      d:'Sua pele tende a perder água com facilidade. Ela se beneficia de fórmulas mais ricas e camadas leves de hidratação.',
-      ts:[
-        'Combine sérum hidratante com creme mais nutritivo.',
-        'Procure ceramidas, manteigas e óleos vegetais na composição.',
-        'Evite sabonetes muito espumantes ou com sulfatos fortes.',
-        'Inclua um óleo facial leve na etapa final da noite.',
-        'Umidificador em ambientes secos pode ajudar bastante.'
-      ]
-    },
-    sensivel:{
-      e:'🌸',n:'Pele Sensível',
-      d:'Sua pele reage com facilidade, então menos é mais. A prioridade é conforto e barreira íntegra, antes de ativos potentes.',
-      ts:[
-        'Dê preferência a fórmulas sem fragrância forte e sem álcool.',
-        'Introduza um produto novo por vez, com alguns dias de intervalo.',
-        'Centella asiática, alantoína e aveia coloidal costumam funcionar bem.',
-        'Evite misturar vários esfoliantes ao mesmo tempo.',
-        'Em crises de sensibilidade, foque em limpeza suave + hidratação + FPS.'
-      ]
-    },
-    normal:{
-      e:'💫',n:'Pele Normal',
-      d:'Você tem uma pele relativamente equilibrada. O objetivo é manter isso e fazer prevenção inteligente a longo prazo.',
-      ts:[
-        'Vitamina C pela manhã ajuda a manter o brilho e proteger do ambiente.',
-        'Retinol em baixa concentração pode ser introduzido devagar à noite.',
-        'FPS diário é o maior aliado de prevenção de manchas e linhas.',
-        'Em vez de muitos produtos, priorize um básico bem feito todos os dias.',
-        'Exfoliação suave 1–2x por semana é suficiente para manter viço.'
-      ]
-    },
-    mista:{
-      e:'🌗',n:'Pele Mista',
-      d:'Zona T mais oleosa, laterais mais secas. Pensar a rotina por “regiões do rosto” costuma trazer ótimos resultados.',
-      ts:[
-        'Na zona T, use hidratantes mais leves; nas bochechas, algo mais nutritivo.',
-        'Niacinamida costuma funcionar bem em todo o rosto.',
-        'Escolha um gel de limpeza que não resseque as áreas já secas.',
-        'Você pode aplicar esfoliantes só onde sente necessidade (como queixo e testa).',
-        'Observe como a pele reage ao clima: ajuste texturas de acordo com a estação.'
-      ]
-    }
+function finishQ() {
+  if (!ans[qIdx]) return;
+  const c = { seca:0, oleosa:0, sensivel:0, normal:0, mista:0 };
+  ans.forEach(a => c[a] = (c[a]||0)+1);
+  const t = Object.keys(c).reduce((a,b) => c[a]>c[b] ? a : b);
+  const rs = {
+    oleosa: { e:'✨', n:'Pele <em>Oleosa</em>', d:'Sua pele produz mais sebo do que o necessário. O foco é equilibrar: limpeza suave, hidratação leve e proteção solar consistente.', ts:['Prefira hidratantes oil-free e não comedogênicos.','Niacinamida ajuda em poros, brilho e textura.','Use gel de limpeza suave de manhã e à noite.','Evite "secar demais" a pele — isso estimula mais óleo.','FPS com textura fluida ou em gel tende a ser mais confortável.'] },
+    seca: { e:'🌊', n:'Pele <em>Seca</em>', d:'Sua pele tende a perder água com facilidade. Ela se beneficia de fórmulas mais ricas e camadas leves de hidratação.', ts:['Combine sérum hidratante com creme mais nutritivo.','Procure ceramidas, manteigas e óleos vegetais na composição.','Evite sabonetes muito espumantes ou com sulfatos fortes.','Inclua um óleo facial leve na etapa final da noite.','Umidificador em ambientes secos pode ajudar bastante.'] },
+    sensivel: { e:'🌸', n:'Pele <em>Sensível</em>', d:'Sua pele reage com facilidade, então menos é mais. A prioridade é conforto e barreira íntegra, antes de ativos potentes.', ts:['Dê preferência a fórmulas sem fragrância forte e sem álcool.','Introduza um produto novo por vez, com alguns dias de intervalo.','Centella asiática, alantoína e aveia coloidal costumam funcionar bem.','Evite misturar vários esfoliantes ao mesmo tempo.','Em crises de sensibilidade, foque em limpeza suave + hidratação + FPS.'] },
+    normal: { e:'💫', n:'Pele <em>Normal</em>', d:'Você tem uma pele relativamente equilibrada. O objetivo é manter isso e fazer prevenção inteligente a longo prazo.', ts:['Vitamina C pela manhã ajuda a manter o brilho e proteger do ambiente.','Retinol em baixa concentração pode ser introduzido devagar à noite.','FPS diário é o maior aliado de prevenção de manchas e linhas.','Priorize um básico bem feito todos os dias em vez de muitos produtos.','Exfoliação suave 1–2x por semana é suficiente para manter viço.'] },
+    mista: { e:'🌗', n:'Pele <em>Mista</em>', d:'Zona T mais oleosa, laterais mais secas. Pensar a rotina por regiões do rosto costuma trazer ótimos resultados.', ts:['Na zona T, use hidratantes mais leves; nas bochechas, algo mais nutritivo.','Niacinamida costuma funcionar bem em todo o rosto.','Escolha um gel de limpeza que não resseque as áreas já secas.','Você pode aplicar esfoliantes só onde sente necessidade.','Observe como a pele reage ao clima: ajuste texturas conforme a estação.'] }
   };
-  const r=rs[t];
-  document.getElementById('rEmoji').textContent=r.e;
-  document.getElementById('rTitle').textContent=r.n;
-  document.getElementById('rDesc').textContent=r.d;
-  document.getElementById('rTips').innerHTML=
-    '<h4>Recomendações para você</h4>'+
-    r.ts.map(s=>'<div class="res-tip"><div class="tip-bul"></div><span>'+s+'</span></div>').join('');
-  document.getElementById('qs'+qIdx).classList.remove('active');
+  const r = rs[t];
+  document.getElementById('rEmoji').textContent = r.e.replace(/<[^>]+>/g,'');
+  document.getElementById('rTitle').innerHTML = r.n;
+  document.getElementById('rDesc').textContent = r.d;
+  document.getElementById('rTips').innerHTML = r.ts.map(s => `<div class="qtip"><div class="qtip-line"></div><span>${s}</span></div>`).join('');
+  document.getElementById('qs' + qIdx).classList.remove('active');
   document.getElementById('qs-res').classList.add('active');
-  for(let i=0;i<6;i++)document.getElementById('pd'+i).className='qpdot done';
+  document.querySelectorAll('#qProgList .qp-item').forEach(item => { item.classList.add('done'); item.classList.remove('cur'); });
 }
-function restartQ(){
-  ans=[];qIdx=0;
-  document.querySelectorAll('.qstep').forEach(s=>s.classList.remove('active'));
+function restartQ() {
+  ans = []; qIdx = 0;
+  document.querySelectorAll('.qstep').forEach(s => s.classList.remove('active'));
   document.getElementById('qs0').classList.add('active');
-  document.querySelectorAll('.qopt').forEach(o=>o.classList.remove('sel'));
-  updProg();document.getElementById('pd0').className='qpdot cur';
+  document.querySelectorAll('.qopt').forEach(o => o.classList.remove('sel'));
+  updProg();
 }
 
-// JOGO MEMÓRIA
-const mitens=['💧','🌹','✨','☀️','🌿','🧴','💊','🍑'];
-let mflipped=[],mmatched=0,mmoves=0,mflip=true;
-function startMem(){
-  document.getElementById('gameArea').style.display='block';
-  document.getElementById('memGame').style.display='block';
-  document.getElementById('trivGame').style.display='none';
-  document.getElementById('pairGame').style.display='none';
-  mmatched=0;mmoves=0;mflipped=[];mflip=true;
-  document.getElementById('mvs').textContent='0';
-  document.getElementById('prs').textContent='0';
-  document.getElementById('gmsg').textContent='Encontre os pares.';
-  const dk=[...mitens,...mitens].sort(()=>Math.random()-.5);
-  const g=document.getElementById('memG');g.innerHTML='';
-  dk.forEach(item=>{
-    const c=document.createElement('div');
-    c.className='mcard hidden';c.dataset.val=item;
-    c.onclick=()=>flipC(c);g.appendChild(c);
+/* ── MEMORY ── */
+const mitens = ['💧','🌹','✨','☀️','🌿','🧴','💊','🍑'];
+let mflipped = [], mmatched = 0, mmoves = 0, mflip = true;
+function startMem() {
+  document.getElementById('gameArea').style.display = 'block';
+  document.getElementById('memGame').style.display = 'block';
+  document.getElementById('trivGame').style.display = 'none';
+  document.getElementById('pairGame').style.display = 'none';
+  mmatched = 0; mmoves = 0; mflipped = []; mflip = true;
+  document.getElementById('mvs').textContent = '0';
+  document.getElementById('prs').textContent = '0';
+  document.getElementById('gmsg').textContent = 'Encontre os pares.';
+  const dk = [...mitens, ...mitens].sort(() => Math.random() - .5);
+  const g = document.getElementById('memG'); g.innerHTML = '';
+  dk.forEach(item => {
+    const c = document.createElement('div');
+    c.className = 'mcard hidden'; c.dataset.val = item;
+    c.onclick = () => flipC(c); g.appendChild(c);
   });
 }
-function flipC(c){
-  if(!mflip||c.classList.contains('matched')||c.classList.contains('flipped'))return;
-  c.classList.remove('hidden');c.classList.add('flipped');c.textContent=c.dataset.val;
+function flipC(c) {
+  if (!mflip || c.classList.contains('matched') || c.classList.contains('flipped')) return;
+  c.classList.remove('hidden'); c.classList.add('flipped'); c.textContent = c.dataset.val;
   mflipped.push(c);
-  if(mflipped.length===2){
-    mflip=false;mmoves++;document.getElementById('mvs').textContent=mmoves;
-    if(mflipped[0].dataset.val===mflipped[1].dataset.val){
-      mflipped.forEach(fc=>{fc.classList.remove('flipped');fc.classList.add('matched');});
-      mmatched++;document.getElementById('prs').textContent=mmatched;
-      mflipped=[];mflip=true;
-      if(mmatched===8)document.getElementById('gmsg').textContent='Parabéns, você concluiu o jogo.';
-    }else{
-      setTimeout(()=>{
-        mflipped.forEach(fc=>{
-          fc.classList.remove('flipped');fc.classList.add('hidden');fc.textContent='';
-        });
-        mflipped=[];mflip=true;
-      },800);
+  if (mflipped.length === 2) {
+    mflip = false; mmoves++; document.getElementById('mvs').textContent = mmoves;
+    if (mflipped[0].dataset.val === mflipped[1].dataset.val) {
+      mflipped.forEach(fc => { fc.classList.remove('flipped'); fc.classList.add('matched'); });
+      mmatched++; document.getElementById('prs').textContent = mmatched;
+      mflipped = []; mflip = true;
+      if (mmatched === 8) document.getElementById('gmsg').textContent = 'Parabéns, você concluiu o jogo.';
+    } else {
+      setTimeout(() => {
+        mflipped.forEach(fc => { fc.classList.remove('flipped'); fc.classList.add('hidden'); fc.textContent = ''; });
+        mflipped = []; mflip = true;
+      }, 800);
     }
   }
 }
 
-// TRIVIA
-const trivs=[
-  {q:'Qual ingrediente é considerado um clássico do anti‑idade?',o:['Vitamina C','Retinol','Niacinamida','Ácido glicólico'],c:1},
-  {q:'Um bom protetor solar facial deve proteger contra:',o:['Apenas UVA','Apenas UVB','UVA e UVB','Somente luz azul'],c:2},
-  {q:'Qual pH costuma ser mais adequado para sabonetes faciais?',o:['3–4','4,5–5,5','7–8','9–10'],c:1},
-  {q:'O ácido hialurônico é um:',o:['Esfoliante','Humectante','Oclusivo','Emoliente pesado'],c:1},
-  {q:'Qual prática veio da K‑beauty e viralizou mundialmente?',o:['Slugging','Dermaplaning','Threading','Taping'],c:0},
-  {q:'A niacinamida é uma forma de qual vitamina?',o:['Vitamina A','Vitamina C','Vitamina B3','Vitamina E'],c:2}
+/* ── TRIVIA ── */
+const trivs = [
+  { q:'Qual ingrediente é considerado um clássico do anti-idade?', o:['Vitamina C','Retinol','Niacinamida','Ácido glicólico'], c:1 },
+  { q:'Um bom protetor solar facial deve proteger contra:', o:['Apenas UVA','Apenas UVB','UVA e UVB','Somente luz azul'], c:2 },
+  { q:'Qual pH costuma ser mais adequado para sabonetes faciais?', o:['3–4','4,5–5,5','7–8','9–10'], c:1 },
+  { q:'O ácido hialurônico é um:', o:['Esfoliante','Humectante','Oclusivo','Emoliente pesado'], c:1 },
+  { q:'Qual prática veio da K-beauty e viralizou mundialmente?', o:['Slugging','Dermaplaning','Threading','Taping'], c:0 },
+  { q:'A niacinamida é uma forma de qual vitamina?', o:['Vitamina A','Vitamina C','Vitamina B3','Vitamina E'], c:2 }
 ];
-let tIdx=0,tPts=0;
-function startTriv(){
-  document.getElementById('gameArea').style.display='block';
-  document.getElementById('trivGame').style.display='block';
-  document.getElementById('memGame').style.display='none';
-  document.getElementById('pairGame').style.display='none';
-  tIdx=0;tPts=0;document.getElementById('trivSc').textContent='Pontos: 0';renderTriv();
+let tIdx = 0, tPts = 0;
+function startTriv() {
+  document.getElementById('gameArea').style.display = 'block';
+  document.getElementById('trivGame').style.display = 'block';
+  document.getElementById('memGame').style.display = 'none';
+  document.getElementById('pairGame').style.display = 'none';
+  tIdx = 0; tPts = 0; document.getElementById('trivSc').textContent = 'Pontos: 0'; renderTriv();
 }
-function renderTriv(){
-  const c=document.getElementById('trivC');
-  if(tIdx>=trivs.length){
-    c.innerHTML=
-      '<div style="text-align:center;padding:18px">'+
-        '<div style="font-size:40px;margin-bottom:10px">🏆</div>'+
-        '<p style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:4px">Fim de jogo</p>'+
-        '<p style="color:var(--muted);margin-bottom:14px">Você acertou '+tPts+' de '+trivs.length+' perguntas.</p>'+
-        '<button class="btn-grad" onclick="startTriv()">Jogar novamente</button>'+
-      '</div>';
+function renderTriv() {
+  const cont = document.getElementById('trivC');
+  if (tIdx >= trivs.length) {
+    cont.innerHTML = `<div style="text-align:center;padding:32px 0"><div style="font-family:var(--font-display);font-size:60px;margin-bottom:16px">🏆</div><p style="font-family:var(--font-display);font-size:28px;font-weight:300;color:var(--deep);margin-bottom:8px">Fim de jogo</p><p style="font-size:14px;color:var(--ink2);opacity:.6;margin-bottom:24px">Você acertou ${tPts} de ${trivs.length} perguntas.</p><button class="btn-primary" onclick="startTriv()"><span>Jogar novamente</span></button></div>`;
     return;
   }
-  const t=trivs[tIdx];
-  c.innerHTML=
-    '<p style="font-size:11px;color:var(--muted);margin-bottom:6px;font-style:italic">Pergunta '+(tIdx+1)+' de '+trivs.length+'</p>'+
-    '<p class="quiz-q" style="margin-bottom:10px">'+t.q+'</p>'+
-    '<div class="qopts">'+
-    t.o.map((o,i)=>'<button class="qopt" onclick="ansTriv('+i+')">'+o+'</button>').join('')+
-    '</div>';
+  const t = trivs[tIdx];
+  cont.innerHTML = `<p class="triv-hint">Pergunta ${tIdx+1} de ${trivs.length}</p><p class="triv-q">${t.q}</p><div class="qopts">${t.o.map((o,i) => `<button class="qopt" onclick="ansTriv(${i})">${o}</button>`).join('')}</div>`;
 }
-function ansTriv(i){
-  const t=trivs[tIdx];
-  const opts=document.querySelectorAll('#trivC .qopt');
-  opts.forEach((o,idx)=>{
-    if(idx===t.c)o.style.borderColor='#5B986D';
-    if(idx===i&&i!==t.c)o.style.borderColor='#C75C5C';
-    o.onclick=null;
+function ansTriv(i) {
+  const t = trivs[tIdx];
+  document.querySelectorAll('#trivC .qopt').forEach((o, idx) => {
+    if (idx === t.c) o.style.borderColor = 'var(--sage)';
+    if (idx === i && i !== t.c) o.style.borderColor = '#c07070';
+    o.onclick = null;
   });
-  if(i===t.c){
-    tPts++;document.getElementById('trivSc').textContent='Pontos: '+tPts;
-  }
-  setTimeout(()=>{tIdx++;renderTriv();},800);
+  if (i === t.c) { tPts++; document.getElementById('trivSc').textContent = 'Pontos: ' + tPts; }
+  setTimeout(() => { tIdx++; renderTriv(); }, 800);
 }
 
-// PAIRING
-const pairs=[
-  {a:'Vitamina C',b:'FPS',ok:true,w:'Vitamina C pela manhã, seguida de FPS, cria uma rotina antioxidante forte e coerente.'},
-  {a:'Retinol',b:'AHA',ok:false,w:'Retinol com ácidos na mesma noite aumenta muito a chance de irritação. Melhor alternar os dias.'},
-  {a:'Niacinamida',b:'Ác. hialurônico',ok:true,w:'Dupla equilibrada: hidrata e ajuda na oleosidade sem pesar, boa para quase todos os tipos de pele.'},
-  {a:'Vitamina C',b:'Retinol',ok:false,w:'Podem ser usados na mesma rotina apenas se a pele estiver muito acostumada; o mais seguro é Vitamina C de manhã e retinol à noite.'},
-  {a:'Peptídeos',b:'Retinol',ok:false,w:'Para aproveitar bem os peptídeos, é interessante usá-los em uma rotina separada do retinol.'},
-  {a:'Centella asiática',b:'Niacinamida',ok:true,w:'Combinação gentil e calmante, ótima para peles que usam outros ativos mais fortes.'}
+/* ── PAIRING ── */
+const pairs = [
+  { a:'Vitamina C', b:'FPS', ok:true, w:'Vitamina C pela manhã, seguida de FPS, cria uma rotina antioxidante forte e coerente.' },
+  { a:'Retinol', b:'AHA', ok:false, w:'Retinol com ácidos na mesma noite aumenta muito a chance de irritação. Melhor alternar os dias.' },
+  { a:'Niacinamida', b:'Ác. hialurônico', ok:true, w:'Dupla equilibrada: hidrata e ajuda na oleosidade sem pesar, boa para quase todos os tipos de pele.' },
+  { a:'Vitamina C', b:'Retinol', ok:false, w:'O mais seguro é Vitamina C de manhã e retinol à noite, em rotinas separadas.' },
+  { a:'Peptídeos', b:'Retinol', ok:false, w:'Para aproveitar bem os peptídeos, é interessante usá-los em uma rotina separada do retinol.' },
+  { a:'Centella asiática', b:'Niacinamida', ok:true, w:'Combinação gentil e calmante, ótima para peles que usam outros ativos mais fortes.' }
 ];
-let pIdx=0,pPts=0;
-function startPair(){
-  document.getElementById('gameArea').style.display='block';
-  document.getElementById('pairGame').style.display='block';
-  document.getElementById('memGame').style.display='none';
-  document.getElementById('trivGame').style.display='none';
-  pIdx=0;pPts=0;document.getElementById('pairSc').textContent='Pontos: 0';renderPair();
+let pIdx = 0, pPts = 0;
+function startPair() {
+  document.getElementById('gameArea').style.display = 'block';
+  document.getElementById('pairGame').style.display = 'block';
+  document.getElementById('memGame').style.display = 'none';
+  document.getElementById('trivGame').style.display = 'none';
+  pIdx = 0; pPts = 0; document.getElementById('pairSc').textContent = 'Pontos: 0'; renderPair();
 }
-function renderPair(){
-  const c=document.getElementById('pairC');
-  if(pIdx>=pairs.length){
-    c.innerHTML=
-      '<div style="text-align:center;padding:18px">'+
-        '<div style="font-size:40px;margin-bottom:10px">🧬</div>'+
-        '<p style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:4px">Você concluiu o jogo</p>'+
-        '<p style="color:var(--muted);margin-bottom:14px">'+pPts+' de '+pairs.length+' combinações corretas.</p>'+
-        '<button class="btn-grad" onclick="startPair()">Jogar novamente</button>'+
-      '</div>';
+function renderPair() {
+  const cont = document.getElementById('pairC');
+  if (pIdx >= pairs.length) {
+    cont.innerHTML = `<div style="text-align:center;padding:32px 0"><div style="font-family:var(--font-display);font-size:60px;margin-bottom:16px">🧬</div><p style="font-family:var(--font-display);font-size:28px;font-weight:300;color:var(--deep);margin-bottom:8px">Concluído</p><p style="font-size:14px;color:var(--ink2);opacity:.6;margin-bottom:24px">${pPts} de ${pairs.length} combinações corretas.</p><button class="btn-primary" onclick="startPair()"><span>Jogar novamente</span></button></div>`;
     return;
   }
-  const p=pairs[pIdx];
-  c.innerHTML=
-    '<p style="font-size:11px;color:var(--muted);margin-bottom:6px;font-style:italic">Combinação '+(pIdx+1)+' de '+pairs.length+'</p>'+
-    '<div style="display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:16px;flex-wrap:wrap">'+
-      '<div style="background:#F8F0F3;border-radius:12px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);border:1px solid var(--border)">'+p.a+'</div>'+
-      '<div style="font-size:20px;color:var(--muted);font-weight:700">+</div>'+
-      '<div style="background:#F4F1FA;border-radius:12px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);border:1px solid var(--border)">'+p.b+'</div>'+
-    '</div>'+
-    '<p style="text-align:center;font-size:13px;font-weight:600;color:var(--text);margin-bottom:12px">Essa combinação faz sentido?</p>'+
-    '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">'+
-      '<button class="btn-grad" onclick="ansPair(true)">Sim</button>'+
-      '<button class="btn-soft" onclick="ansPair(false)">Não</button>'+
-    '</div>';
+  const p = pairs[pIdx];
+  cont.innerHTML = `<p class="triv-hint">Combinação ${pIdx+1} de ${pairs.length}</p><div class="pair-tags"><div class="pair-tag">${p.a}</div><div class="pair-plus">+</div><div class="pair-tag">${p.b}</div></div><p class="pair-question">Essa combinação faz sentido na mesma rotina?</p><div class="pair-actions"><button class="btn-primary" onclick="ansPair(true)"><span>Sim</span></button><button class="btn-secondary" onclick="ansPair(false)">Não</button></div>`;
 }
-function ansPair(ch){
-  const p=pairs[pIdx];
-  const ok=ch===p.ok;
-  if(ok)pPts++;
-  document.getElementById('pairSc').textContent='Pontos: '+pPts;
-  const bg=ok?'#E6F3EA':'#FCEBEB';
-  const msg=ok?'Combinação adequada':'Melhor evitar assim';
-  const cor=ok?'#2E7D32':'#C62828';
-  document.getElementById('pairC').innerHTML+=
-    '<div style="background:'+bg+';border-radius:10px;padding:10px;margin-top:10px;font-size:13px;line-height:1.5;color:'+cor+'">'+
-      '<strong>'+msg+': </strong><span style="color:'+cor+'">'+p.w+'</span>'+
-    '</div>';
-  setTimeout(()=>{pIdx++;renderPair();},1500);
+function ansPair(ch) {
+  const p = pairs[pIdx];
+  const ok = ch === p.ok;
+  if (ok) pPts++;
+  document.getElementById('pairSc').textContent = 'Pontos: ' + pPts;
+  const icon = ok ? '✓' : '✗';
+  document.getElementById('pairC').innerHTML += `<div class="game-result-panel"><div class="grp-icon">${icon}</div><div class="grp-text"><strong>${ok ? 'Correto.' : 'Não exatamente.'}</strong> ${p.w}</div></div>`;
+  setTimeout(() => { pIdx++; renderPair(); }, 1600);
 }
 
-// Ano no rodapé
-document.getElementById('year').textContent=(new Date()).getFullYear();
+/* ── YEAR ── */
+document.querySelectorAll('.yr').forEach(el => el.textContent = new Date().getFullYear());
 </script>
 </body>
 </html>
