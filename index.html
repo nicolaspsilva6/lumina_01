@@ -1261,7 +1261,22 @@ nav.scrolled {
           <div class="hcard-label">Tendência da semana</div>
           <div class="hcard-title">Glazed skin — o brilho saudável que domina 2026 </div>
           <div class="hcard-meta">Maquiagem & Skincare</div>
-          <div class="hcard-tag">Ver artigo →</div>
+          <div class="hcard-tag">
+  <a href="javascript:void(0)"
+     onclick="
+       showPage('conteudo', document.querySelectorAll('.tab')[3]);
+       // troca para a aba Tendências
+       showCnt('tendencias', document.querySelectorAll('.ctab-btn')[3]);
+       // rola suavemente até a seção de tendências
+       setTimeout(() => {
+         document.getElementById('cnt-tendencias')
+                 .scrollIntoView({ behavior: 'smooth' });
+       }, 300);
+     "
+     style="color:inherit;text-decoration:none;">
+    Ver artigo →
+  </a>
+</div>
         </div>
         <div class="hero-card hero-card-bottom">
           <div class="hcard-num">08</div>
